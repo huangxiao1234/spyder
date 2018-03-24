@@ -1,0 +1,1264 @@
+/Users/huangxiao/anaconda3/python.app/Contents/MacOS/python /Users/huangxiao/舆论分析代码/慧博研报词云/spider_for_dongcai.py
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><title>
+	机构研究报告 _ 数据中心 _ 东方财富网
+</title>
+    <meta name="publishid" content="2018-02-13 07:39:43" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" /><meta name="keywords" content="机构研究报告,研报中心,研报,个股评级,买入评级,个股研报,盈利预测,行业研究,行业研报,策略研究" /><meta name="description" content="东方财富网研报中心提供沪深两市最全面的研报信息，将国内各大机构研究报告优化整合，第一时间提供各大券商研究所报告之精华，深入解析上市公司最新变化、发展方向、成长性以及业绩变动趋势。最大程度减少个人投资者与机构之间信息上的差异，使个人投资者更早的了解到上市公司基本面变化。" /><meta name="robots" content="index, follow" /><meta name="googlebot" content="index, follow" /><meta http-equiv="refresh" content="1200" /><link rel="stylesheet" type="text/css" href="../css/hyyb.css" /><link rel="stylesheet" type="text/css" href="../css/page_hy.css?&lt;%=AppConfiger.Instance.CssVersion %&gt;" /><link href="/css_001/common/hqPopDialog.css" rel="stylesheet" type="text/css" /><link rel="shortcut icon" type="image/x-icon" href="http://g1.dfcfw.com/g1/special/favicon_shortcut.ico" /><link rel="apple-touch-icon" href="http://g1.dfcfw.com/g1/special/Apple_ico.png" />
+       <script src="/Stock2016/js/emcharts.min.js" charset="utf-8"></script><style type="text/css">
+/*手机版图表样式*/
+.emcharts-container .show-tip {
+    position: absolute;
+    top: 0px;
+    z-index: 999;
+    border: 0;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #17b03e;
+    color: #fff;
+    font-size: 20px;
+    font-weight: lighter;
+    font-family: 'Microsoft Yahei';
+
+}
+.emcharts-container .show-tip .span-price{
+	font-size: 22px;
+}
+.emcharts-container .show-tip span{
+	font-size: 14px;height:25px;line-height:25px;
+    white-space: nowrap;
+}
+
+.emcharts-container .tip-line-1,.tip-line-2{
+	height:25px;
+	line-height:25px;
+}
+
+.emcharts-container .show-tip .span-time-c1{
+	text-align: left;
+	margin-right: 10px;
+}
+.emcharts-container .show-tip .span-time-c2{
+	text-align: right;
+}
+
+.emcharts-container .show-tip .span-k-c1{
+	text-align: left;
+	margin-right: 10px;
+}
+.emcharts-container .show-tip .span-k-c2{
+	text-align: right;
+}
+
+
+.emcharts-container .cross-y{
+	position:absolute;top:0px;z-index:98;border-left:1px dashed #8f8f8f;width:0px;background-color:#fff;
+}
+.emcharts-container .cross-x{
+	position:absolute;left:0px;z-index:98;border-top:1px dashed #8f8f8f;height:0px;
+}
+.emcharts-container .cross-p{
+	position:absolute;z-index:100;
+}
+.emcharts-container .mark-ma{
+	position:absolute;top:0px;left:0px;z-index:97;border:0;font-family:Arial;font-weight:lighter;
+}
+.emcharts-container .mark-ma span {
+	display:inline-block;padding-right:3px;font-size:12px;text-align:left;color:#ffba42;
+}
+
+.emcharts-container .mark-ma .span-m5{
+	color:#f4cb15;
+}
+.emcharts-container .mark-ma .span-m10{
+	color:#ff5b10;
+}
+.emcharts-container .mark-ma .span-m20{
+	color:#488ee6;
+}
+.emcharts-container .mark-ma .span-m30{
+	color:#fe59fe;
+}
+
+.emcharts-container .bar-color-span{
+	display: inline-block;
+	margin-left: 10px;
+	width: 10px;
+	height: 10px;
+	vertical-align: middle;
+}
+
+.emcharts-container .bar-value-span{
+	display: inline-block;
+	min-width: 50px;
+	padding: 0px 5px;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+/* chart_line 的样式 */
+.emcharts-container .chart_line_tips{
+	position: absolute;
+	z-index: 100;
+	background-color: #000;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+	opacity: 0.7;
+	color:white;
+	min-width: 80px;
+	padding: 10px;
+	border-radius: 5px;
+	font-family: "Microsoft YaHei";
+	font-weight: lighter;
+	text-align: left;
+	-webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+}
+.emcharts-container .chart_line_tips_title{
+	font-size: 16px;
+	font-weight: 400px;
+	padding: 5px 0px;
+}
+.emcharts-container .chart_line_tips_line{
+	padding: 2px 0px;
+	font-size: 12px;
+}
+.emcharts-container .chart_line_tips_color{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	margin-right: 5px;
+}
+.emcharts-container .chart_line_tips_content{}
+.emcharts-container .chart_line_yline{
+	position: absolute;
+	width: 0px;
+	border-left: solid 1px #898989;
+}
+.emcharts-container .chart_line_ybar{
+	position: absolute;
+	background-color: rgb(51,51,51);
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
+	opacity: 0.1;
+}
+.emcharts-container .chart_line_cir{
+	background-color: white;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	border: solid 1px white;
+	position: absolute;
+}
+
+.emcharts-container .event-div{
+	background-color: #fff;
+	opacity: 0;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	z-index: 1000;
+}
+
+/* 技术指标的样式 */
+.emcharts-container .markTContainer{
+	position: absolute;
+	font-family: 'Microsoft Yahei';
+	font-weight: lighter;
+	font-size: 12px;
+}
+.emcharts-container .markTContainer span{
+	margin-right: 5px;
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+}
+
+.emcharts-container .scale-div{
+	position:absolute;z-index:99;border:0px;width:90px;height:45px;
+	opacity:0.7;
+}
+.emcharts-container .scale-div .span-minus{
+	width: 30px;height: 30px;float: left;border-radius: 6px;
+	background: url(data:image/png;base64,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) no-repeat center center #cccccc;
+	font-size: 14px;
+}
+.emcharts-container .scale-div .span-plus{
+	width: 30px;height: 30px;float: right;border-radius: 6px;
+	background: url(data:image/png;base64,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) no-repeat center center #cccccc;
+	font-size: 14px;
+}
+.emcharts-container .scale-opacity{
+	opacity:0.3;
+}
+
+.emcharts-container .loading-chart {
+	position: absolute;
+	left:0;
+	top:0;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	text-align: center;
+
+    opacity: 0.7;
+    font-size: 20px;
+}
+
+.emcharts-container .delay-div{
+	position: absolute;
+	left:0;
+	top:0;
+	z-index: 10000;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+    opacity: 0;
+}
+
+.emcharts-container .mark-point{
+	position: absolute;
+	z-index: 97;
+	min-width: 15px;
+	min-height: 15px;
+	border-radius: 10px;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxQjBBMjM2MjI2REMxMUU2QURERTg3REFCOEYzQUQzNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxQjBBMjM2MzI2REMxMUU2QURERTg3REFCOEYzQUQzNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjFCMEEyMzYwMjZEQzExRTZBRERFODdEQUI4RjNBRDM2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjFCMEEyMzYxMjZEQzExRTZBRERFODdEQUI4RjNBRDM2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+FqRI6gAAAypJREFUeNqsVktIlFEUPhND6DRgOfSCCFs0jQYNWTaJ1qRGjQxhRNKDFi2KJCOoyFVFJgQ9XAQtkhRclVCJFoa5GJUpQQrCFmkygdAsejCZYSO1mb7Dvf/8j7nzAg98zP3Pvfd8cx733GtLHKRs4gZ41T6gDHBJfQz4CAwBfcB0JiO2DER+oA3YRblJGLgKjKomlyh0BcADYDgPEpJrh+XegmxExUAIOMPeUv5ik3tD0paSyAG8BCqTmtsTRCvcapOH24kuD6YjrJS2HJrCbpi8B/hMy11riIrWEc3KPJfU6nPTb4kO4c8HkJapN7p+Lqqt90mbp43F4JfxNYer6xvK4RjRTEh4djcs9IXLiBb+6Ov4m4V14RdE3ae0mQRQwwWiEbGF6uS/3h4Uy+pPiI3zc0RPL+le3XxO1Fyue3odHs1MGgmM8poLhXPkTZKweKoEAaN4FZYcEGMtV+xd9DNRQ4v4Zr0bJiLv0+WLbXvZo1YMrqVMbzlK1PqY6EKdOnRaqKyhfHKfaLDNau2GPe1ZKd8rfvccR0hCoijYw/4uEUoWZ5E+ZtmBPc7lKmu7mcijJCqrIPr5nWgbchlpRrgmhX7kkfCwGrqzt8y5cnaC+JfK2ia7oXeZw1boFOOBbqIjFxHceqL2c3pBMDGHqw4l/m5A/xNc3qni4hz9xWCpSc0H8UdUFAKXdyMSH/+NcPrNJW0scU1iX4lavFbtP7vswmtN3ni2EnWeF0QsdwLmbScRopJSlHVVrq0pxkRTJiIuAj47sxm6/koUhsMp2pBRuFt86FHt+GSXh7UmqdKSnUnY4y8Rog2bdd36jeJbTRRmol7TOcpGwl7E51PDpuVVLc+4M0zINpFduNq4kY72pc6xR8YzZW5BE1r3vqJsqkbhLt2I8h7q0fseF467Qhxc12qRI7Mk5K2bvI/4+n2oLFXtXOwMWDuzKBzug3y4eztU+WGbI9Y3g0PejD5aHBkH+AKLW29YVgTlgsUgCWokqjdDTJZ6h4xvvpKQe2ulrYyvoAWgSRKO5UEyJgmajJ7k8q5LHk+gAdgPlFoekNzSXwH9ssOklf8CDADTqe/lOuA5/wAAAABJRU5ErkJggg==) no-repeat center center/15px 15px #fff;
+	opacity: 1;
+}
+
+
+/*web港股的样式*/
+.emcharts-container .web-tips{
+	display: none;
+	left: -10000px;
+	top: -10000px;
+	position: absolute;
+	text-align: left;
+	background-color: #898989;
+	border-radius: 2px;
+	z-index: 10000;
+	display: inline-block;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	padding: 2px;
+	white-space:nowrap;
+}
+.emcharts-container .web-middleLine{
+	display: none;
+	position: absolute;
+	width: 0px;
+	border-right: dashed 1px #898989;
+}
+
+.emcharts-container .group-bar-mark{
+	position: absolute;
+	opacity: 0.1;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=10);
+}
+
+.emcharts-container .tech-index{
+	position:absolute;
+	z-index: 99;
+}
+
+.emcharts-container .tech-index-item{
+	background-color: #707070;
+	float:left;
+	text-align: center;
+	color:#fff;
+	cursor: pointer;
+}
+
+.emcharts-container .tech-index .current{
+	background-color: #c2c2c2;
+	color:#707070;
+}
+
+
+/*web版图表样式*/
+.emcharts-container{
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+
+   	font-family: simsun;
+	font-size: 12px;
+	box-sizing: inherit;
+}
+
+.emcharts-container{
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+
+   	font-family: simsun;
+	font-size: 12px;
+	box-sizing: inherit;
+}
+.emcharts-container .web-show-tip {
+	position: absolute;
+	top: 0px;
+	background-color: red;
+	z-index: 999;
+	border: 1px solid #97c8ff;
+	/*padding: 8px;*/
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+	background-color: #fff;
+	color: #666;
+	width: 150px;
+	font-size: 12px;
+	font-weight: lighter;
+	font-family: 'arial';
+
+}
+
+.emcharts-container .web-tip-line-left{
+	float: left;
+	width:50%;
+	text-align: left;
+	height:20px;
+	line-height: 20px;
+
+	*height:15px;
+	*line-height: 15px;
+}
+
+.emcharts-container .web-tip-line-right{
+	float: left;
+	width:50%;
+	text-align: right;
+	height:20px;
+	line-height: 20px;
+	white-space: nowrap;
+	*height:15px;
+	*line-height: 15px;
+}
+
+.emcharts-container .web-tip-first-line{
+	width:100%;
+	padding: 3px 0px;
+	background: #edf5ff;
+	text-align: center;
+}
+
+.emcharts-container .web-tip-line-container{
+	padding:3px 8px;
+	*margin-bottom: 8px;
+}
+
+.emcharts-container .time-tips-coordinate{
+	display: none;
+	position: absolute;
+	padding: 0px 3px;
+	font-size: 12px;
+	background-color: #707070;
+	color: white;
+	z-index: 1000;
+}
+.emcharts-container .time-tips-top{
+	display: none;
+	font-size: 12px;
+	color: #888;
+	position: absolute;
+	top: 0px;
+}
+
+/* web 版 分时图盘口异动样式 */
+.emcharts-container .timeChangeMainPad {
+    border: solid #65CAFE 1px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    font-size: 12px;
+    color: #555;
+    background-color: white;
+    z-index: 1000;
+}
+.emcharts-container .timeChangeTriangle{
+	*display: none;
+	position: absolute;
+    left: 55px;
+    top: -6px;
+	width: 10px;
+	height: 10px;
+	background-color: #D1E7FF;
+	border-left: solid 1px #65CAFE;
+	border-top: solid 1px #65CAFE;
+	-webkit-transform: rotate(45deg);    /* for Chrome || Safari */
+	-moz-transform: rotate(45deg);       /* for Firefox */
+	-ms-transform: rotate(45deg);        /* for IE */
+	o-transform: rotate(45deg);         /* for Opera */
+}
+.emcharts-container .timeChangeTable{
+	*width: 170px;
+	min-width: 100px;
+	height: 50px;
+	border-spacing: 0px;
+    table-layout: fixed;
+}
+.emcharts-container .timeChangeHeader{
+	background-color: #D1E7FF;
+  	text-align: center;
+  	*width: 170px;
+    min-width: 100px;
+	padding: 7px 0px 5px 0px;
+	font-size: 14px;
+}
+.timeChangeTable td{
+	padding: 0px 4px;
+}
+
+/* web版 k线图指标样式 */
+
+.emcharts-container .kt-pad {
+    position: absolute;
+    color: #5F5F5F;
+    margin-left: 15px;
+    min-width: 60px;
+    *min-width: auto;
+}
+
+.emcharts-container .kt-title {
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.emcharts-container .kt-line {
+    background-color: white; position: relative; margin: 7px 0px;
+}
+
+.emcharts-container .kt-line:hover{
+    cursor: pointer;
+}
+
+.emcharts-container .kt-radio-wrap{
+ position: relative; display: inline-block;margin-right:35px; *zoom:1;*display:inline; border: solid 1px #305896;height: 10px; width: 10px;background-color: white;box-sizing:content-box;
+}
+
+.emcharts-container .kt-radio {
+    position:absolute; top: 2px; left:2px;width: 6px; height: 6px; background-color: #305896;display: none;
+}
+
+.emcharts-container .kt-name {
+    color: #555;line-height: 18px;display: inline-block; height: 16px;padding-left: 5px;position: absolute; top: -2px; left: 15px;*left:26px;*display: inline;
+}
+
+.emcharts-container .kt-radio-choose {
+    display: block;
+}
+
+/* web k 线的滑动 */
+.emcharts-container .slideBarCVS{
+	background-color: white;
+	outline: solid 1px #E9E9E9;
+
+}
+
+.emcharts-container .leftDrag{
+	background-color: white;
+	opacity: 2;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=200);
+}
+.emcharts-container .leftDrag:hover{
+	cursor: w-resize;
+}
+
+.emcharts-container .rightDrag{
+	background-color: white;
+}
+.emcharts-container .rightDrag:hover{cursor: e-resize;}
+.emcharts-container .containerBar{
+	background-color: #e0e0e0;
+	opacity: 0.5;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+	border:solid 1px #35709C;
+}
+.emcharts-container .containerBar:hover{cursor: move;}
+
+.emcharts-container .preference-container{
+	position: absolute;
+	z-index: 101;
+}
+.emcharts-container .preference-shade{
+	background-color: #333;
+	opacity: 0.1;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=10);
+	width:100%;
+	height: 100%;
+}
+.emcharts-container .preference-handle{
+	position:absolute;
+	z-index: 101;
+	background-color: #fff;
+	border: 1px solid #e6e6e6;
+	border-left: 0;
+	width:30px;
+	height: 40px;
+	line-height: 20px;
+	padding:5px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 12px;
+    box-sizing: content-box;
+}
+.emcharts-container .set-tab{
+	border-bottom:1px solid #4267A0;
+	height:30px;
+	margin-bottom: 5px;
+}
+.emcharts-container .ma-tab{
+	/*float:left;*/
+	/*width:50%;*/
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 14px;
+}
+.emcharts-container .set-tab .current{
+	background-color: #4267A0;
+	color:#fff;
+}
+.emcharts-container .right-tab{
+	float:left;
+	width:50%;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.emcharts-container .set-container{
+	position: absolute;
+	z-index: 103;
+	background-color: #fff;
+	width:280px;
+	height:200px;
+}
+
+.emcharts-container .pre-notice{
+	height:20px;
+	line-height: 20px;
+	text-align: center;
+	margin: 5px 0px;
+	font-size: 14px;
+}
+.emcharts-container .ma-item{
+	height: 27px;
+	line-height: 30px;
+	padding-left: 15px;
+	text-align: center;
+}
+.emcharts-container .setting-span-ma5{
+	background-color:#f4cb15;
+}
+.emcharts-container .setting-span-ma10{
+	background-color:#ff5b10;
+}
+.emcharts-container .setting-span-ma20{
+	background-color:#488ee6;
+}
+.emcharts-container .setting-span-ma30{
+	background-color:#fe59fe;
+}
+
+.emcharts-container .span-setting{
+	display: inline-block;
+	*display: inline;
+	*zoom:1;
+	height: 15px;
+	width:15px;
+	margin-left: 10px;
+	vertical-align:middle;
+	cursor: pointer;
+}
+.emcharts-container .item-span{
+
+}
+
+.emcharts-container .right-panel{
+	text-align: center;
+}
+.emcharts-container .right-panel-form{
+	text-align: left;
+	width: 160px;
+	margin: 20px auto;
+	line-height: 1.8;
+}
+/*.right-panel-btn{
+	border: none;
+	padding: 5px 15px;
+	margin: 10px 27px;
+	background-color: #4267A0;
+	color: white;
+}
+*/
+
+.emcharts-container .confirm-btn{
+	float:left;
+	border: none;
+	margin-left:30px;
+	margin-top:10px;
+	width:90px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #305895;
+	color: white;
+	font-size: 14px;
+}
+.emcharts-container .cancle-btn{
+	float:right;
+	border: none;
+	margin-right:30px;
+	margin-top:10px;
+	width:90px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #305895;
+	color: white;
+	font-size: 14px;
+}
+
+.emcharts-container .colorPad{
+	display: none;
+	position: absolute;
+	top: 120px;
+	left: 120px;
+	background-color: white;
+}
+.emcharts-container .colorPadTriangle{
+	position: absolute;
+	top: 9px;
+	left: -12px;
+	width: 16px;
+	height: 11px;
+	*display: none;
+	background-color: white;
+	overflow: hidden;
+	z-index: 100;
+}
+.emcharts-container .colorPadTriangle .up{
+	position: absolute;
+	top: 2px;
+	left: 3px;
+	width: 12px;
+	height: 10px;
+	border-top: solid 1px #aaa;
+	background-color: white;
+	-webkit-transform: rotate(-25deg);    /* for Chrome || Safari */
+	-moz-transform: rotate(-25deg);       /* for Firefox */
+	-ms-transform: rotate(-25deg);        /* for IE */
+	o-transform: rotate(-25deg);         /* for Opera */
+	*display: none;
+	z-index: 10;
+}
+.emcharts-container .colorPadTriangle .down{
+	position: absolute;
+	top: 7px;
+	left: -1px;
+	width: 12px;
+	height: 10px;
+	border-top: solid 1px #aaa;
+	background-color: white;
+	-webkit-transform: rotate(25deg);    /* for Chrome || Safari */
+	-moz-transform: rotate(25deg);       /* for Firefox */
+	-ms-transform: rotate(25deg);        /* for IE */
+	o-transform: rotate(25deg);         /* for Opera */
+	*display: none;
+	z-index: 10;
+}
+.emcharts-container .colorTable{
+	width: 100px;
+	height:90px;
+	border: solid 1px #aaa;
+}
+.emcharts-container .colorTable td{
+	position: relative;
+	z-index: 100;
+	border: solid 3px #fff;
+}
+.emcharts-container .ma-panel{
+	position: relative;
+}
+.emcharts-container .ma-item-input{
+	width:30px;
+	height: 15px;
+	line-height: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 12px;
+	vertical-align:middle;
+	padding-left: 3px;
+}
+
+.emcharts-container .fu-quan-select{
+
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+
+	position: absolute;
+	z-index: 100;
+	right:0px;
+	top:5px;
+	width:50px;
+	height:20px;
+	font-size: 12px;
+	font-family: simsun;
+
+	 -webkit-appearance: none;
+	 padding-left: 3px;
+}
+/* barHorizontal */
+.emcharts-container .horizontal-gmask{
+	position: absolute;
+	background-color: #000;
+	opacity: 0.1;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=10);
+}
+.emcharts-container .horizontal-gpanel{
+	position: absolute;
+	background-color: #000;
+	border-radius: 5px;
+	opacity: 0.7;
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+	color:#ffffff;
+	padding: 5px 10px;
+}</style>
+        <script src="/js_001/common/hqPopDialog1.js"></script>
+    <script type="text/javascript" src="/js_001/stocksuggest.js" charset="gb2312"></script>
+    <script src="/js/YanBao/FloatHead2.js"></script>
+    <base target="_blank" />
+    <style type="text/css">
+        a.hqPopCls:hover{
+            color:red;
+        }
+    </style>
+<link rel="stylesheet" href="//emcharts.dfcfw.com/suggest/stocksuggest2017.css" /><style>body{margin-top:43px;}.topnavmain{width:950px;margin:0 auto;background-color:#fff;}html,html body{_background-image:url(about:blank); _background-attachment:fixed;}.top-nav-wrap ul{padding:0;margin:0;list-style:none;}.top-nav-wrap{font-size:12px;font-family:simsun;height:30px; background-color:#f7f7f7; border-top:2px solid #ff4901; border-bottom:1px solid #dfdfdf; position:fixed !important; position:absolute; left:0; top:0; _top:expression(eval(document.documentElement.scrollTop)); z-index:99999; width:100%; min-width:1000px;}.top-nav-wrap .topnavmain{background-color:#F7F7F7;}.tw-nav{height:30px; float:left;}.top-nav-wrap a,.top-nav-wrap .down-menu{float:left; }.top-nav-wrap a:link,.top-nav-wrap a:visited{height:16px; padding:7px 5px; line-height:16px; background-color:none; color:#000; text-decoration:none;}.top-nav-wrap span.red a{color:#ff4901;}.top-nav-wrap a:hover{background-color:#eaeaea; text-decoration:none;}.down-menu{position:relative; width:87px; }.down-menu.wz0{width:auto; }.down-menu.wz2{width:64px; }.down-menu.wz3{width:70px; }.down-menu.wz4{width:82px; }.down-menu.wz6{width:105px; }.down-menu .category {background-image:url(http://g1.dfcfw.com/g2/201607/20160725145137.png);background-repeat:no-repeat;background-position:right 13px; padding:7px 0; display:block; float:none; text-align:center; text-indent:-8px;}.down-menu .category.red{color:#ff4900 !important;}.down-menu ul,.down-menu .loginBox{clear:both; background:#b3d0e4; padding-bottom:1px; width:100%; position:absolute; left:0; -moz-box-shadow:3px 3px 3px rgba(0, 0, 0, .1); -webkit-box-shadow:3px 3px 3px rgba(0, 0, 0, .1); box-shadow:3px 3px 3px rgba(0, 0, 0, .1); display:none;}.down-menu ul li a{background-color:#fff; margin:1px; margin-top:0; padding:6px 0; display:block; text-align:center; float:none; }.down-menu a:hover{ color:#ff4901; }.down-menu ul li{width:100%; }.down-menu ul li.tit{text-align:center; font-weight:bold;}.down-menu ul li.blue{color:#315895;}.down-menu ul li.red{color:#ff4900;}.down-menu ul li.red a{color:#ff4900 !important;}.down-menu ul li.tit span{background-color:#f7f7f7; margin:1px; margin-top:0; padding:6px 0; display:block; zoom:1; }.down-menu.wz5 ul,.down-menu.wz5 ul li {width:145px;}.down-menu.wz2 ul,.down-menu.wz2 ul li {width:105px;}.down-menu.wz4 ul,.down-menu.wz4 ul li {width:90px;}.tw-login{ float:right; text-align:right;}.down-menu.show ul, .down-menu.show .loginBox{display:block;}.down-menu.show .category{background-color:#eaeaea;}.down-menu .userinfo{ color:#ff4901; height:30px; line-height:17px; width:135px; }.down-menu .userinfo a{margin:0; padding:0; float:none; color:#ff4901; text-indent:0 !important; display:inline-block !important; padding:7px 4px; }.down-menu .userinfo cite{display:inline-block; padding:7px 0; font-style:normal;}.down-menu .userinfo a.usernick{padding-right:16px; background-position:right -355px;}.down-menu .userinfo .user-menu{position:relative; display:inline-block;}.down-menu .userinfo .user-menu-list{position:absolute; top:30px; left:0; border:1px solid #b3d0e4;}.down-menu .userinfo .user-menu-list div{background-color:#FFF; padding:14px; color:#000; width:120px; text-align:left;}.down-menu .user-menu-list dt,.user-menu-list dd{float:left; margin:0; height:16px; line-height:16px; margin:2px 0; width:60px; overflow:hidden;}.down-menu .user-menu-list dt{clear:both;}</style><link rel="stylesheet" href="//emcharts.dfcfw.com/newsts/ts.css?v=20170921" /><script charset="gb2312" type="text/javascript" src="http://blog.eastmoney.com/timezone.aspx?r=0.6361662635065977"></script></head>
+<body style="overflow-y:scroll;"><div class="hqPop" style="display:none;">                    <div class="contentWrapper">                        <div class="content">                            <div id="hqStockName" class="hqStockName">                                <span></span>                            </div>                            <div id="" class="" style="float: right;height: 20px;line-height: 20px;font-size: 14px; padding-right:10px;"><a class="hqmore" href="">更多</a></div>                            <ul class="tab-list" id="tab_list" style="left:95px;">                                <li class="tab-item choose" id="fst">分时</li>                                <li class="tab-item " id="rk">日K</li>                                <li class="tab-item" id="zk">周K</li>                                <li class="tab-item" id="yk">月K</li>                            </ul>                            <div class="scale">                                <select class="beforeBackRight" id="beforeBackRight" style="display:none;">                                    <option value="before" selected="selected">前复权</option>                                    <option value="">不复权</option>                                    <option value="back">后复权</option>                                </select>                            </div>                            <div id="emchart" class="emchart" style="padding-top: 30px;">                                <div id="emchart-fst" class="em-tab">                                </div>                                <div id="emchart-rk" class="em-tab">                                </div>                                <div id="emchart-zk" class="em-tab">                                </div>                                <div id="emchart-yk" class="em-tab">                                </div>                            </div>                        </div>                    </div>                </div>
+    <script>var NavCache = { Page: "个股研报", current_n: 4 };</script>
+
+
+<link rel="shortcut icon" type="image/ico" href="http://www.eastmoney.com/favicon.ico" />
+<link rel="stylesheet" type="text/css" media="all" href="/css/default.css?rt=20160616" />
+<link rel="stylesheet" type="text/css" media="all" href="/css/layer2012.css?rt=20160721" />
+<link href="/css_001/header950.css" rel="stylesheet" />
+<script type="text/javascript" src="http://cmsjs.eastmoney.com/channel/jquery-1.8.3.min.js?rt=20151113"></script>
+<script type="text/javascript">
+     $.noConflict();
+</script>
+<script src="http://emcharts.dfcfw.com/suggest/stocksuggest2017.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js_001/base.js?201606021831"></script>
+<script type="text/javascript" src="/js_001/pluginNoBind.js?201606021831"></script>
+<script type="text/javascript" src="/js/layer2012.js?rt=201410711"></script>
+<script type="text/javascript" src="/js_001/ht_web.js"></script>
+<style>
+         .header .centerbox .submitBtn{
+            background-color: #4F78BD;
+            width: 44px;
+            padding:4px 0;
+            *padding:3px 0;
+            *margin-top:-1px;
+            color: #fff;
+            display: inline-block;
+            border: none;
+            font-size:12px;
+            font-family:"宋体";
+            text-align:center;
+            cursor:pointer;
+        }
+        .header .centerbox .submitBtn:hover{
+            color:red;
+        }
+        .inp-search .inp-txt-wrap{
+            width:274px;
+            text-align:left;
+        }
+        .inp-search .inp-txt{
+            float:left;
+        }
+        input.btnNew {
+            background-color: #4f78bd;
+            border:none;
+            padding:0;
+            font-size:14px;
+            font-family:"宋体";
+            text-align:center;
+            margin-top:-1px;
+            cursor:pointer;
+        }
+
+     </style>
+<!-- 微信分享img --><img id="weixin-share" src="http://wap.eastmoney.com/weixin-share.png" />
+<div id="page" class="header_page">
+    <div class="adFrame950">
+        <script type="text/javascript">
+            if (Math.random() &lt; 0.25)
+                document.write('&lt;iframe width="950" height="60" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://same.eastmoney.com/s?z=eastmoney&amp;c=1254&amp;op=1"&gt;&lt;/iframe&gt;');
+            else
+                document.write('&lt;iframe width="950" height="60" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://fundact.eastmoney.com/banner/hqb_hq.html?spm=100004.sbb"&gt;&lt;/iframe&gt;');
+        </script><iframe width="950" height="60" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://fundact.eastmoney.com/banner/hqb_hq.html?spm=100004.sbb"></iframe>
+    </div>
+
+    <div class="header">
+        <div class="nav">
+            <ul>
+                <li><a href="http://finance.eastmoney.com/">财经</a></li>
+                <li><a href="http://finance.eastmoney.com/yaowen.html">要闻</a></li>
+                <li><a href="http://stock.eastmoney.com/">股票</a></li>
+                <li><span class="red"><a href="http://stock.eastmoney.com/newstock.html">新股</a></span></li>
+                <li><a href="http://stock.eastmoney.com/gzqh.html">期指</a></li>
+                <li><a href="http://option.eastmoney.com/">期权</a></li>
+                <li><span class="red"><a href="http://quote.eastmoney.com/flash/sz300059.html">行情</a></span></li>
+                <li><a href="http://data.eastmoney.com/">数据</a></li>
+                <li><a href="http://stock.eastmoney.com/global.html">全球</a></li>
+                <li><a href="http://stock.eastmoney.com/america.html">美股</a></li>
+                <li><a href="http://hk.eastmoney.com/">港股</a></li>
+                <li><a href="http://futures.eastmoney.com/">期货</a></li>
+                <li><a href="http://forex.eastmoney.com/">外汇</a></li>
+                <li><a href="http://gold.eastmoney.com">黄金</a></li>
+                <li><a href="http://bank.eastmoney.com/">银行</a></li>
+                <li><a href="http://www.1234567.com.cn/">基金</a></li>
+                <li><a href="http://money.eastmoney.com/">理财</a></li>
+                <li><a href="http://insurance.eastmoney.com/">保险</a></li>
+                <li><a href="http://bond.eastmoney.com/">债券</a></li>
+                <li><a href="http://video.eastmoney.com/">视频</a></li>
+                <li><span class="red"><a href="http://guba.eastmoney.com/">股吧</a></span></li>
+                <li><a href="http://fund2.eastmoney.com/">基金吧</a></li>
+                <li><a href="http://blog.eastmoney.com/">博客</a></li>
+                <li><a href="http://so.eastmoney.com/">搜索</a></li>
+            </ul>
+        </div>
+        <div class="advert">
+            <script type="text/javascript" src="http://same.eastmoney.com/s?z=eastmoney&amp;c=935" charset="gbk"></script><div style="width:950px;height:90px;border:none;padding:0px;margin:0px;overflow:hidden;position:relative;"><a href="http://same.eastmoney.com/c?z=eastmoney&amp;la=0&amp;si=1&amp;cg=28&amp;c=935&amp;ci=1&amp;or=47&amp;l=11104&amp;bg=11104&amp;b=12856&amp;u=http://js5.eastmoney.com/tg.aspx?ID=1265" target="_blank"><img src="http://g1.dfcfw.com/g1/201612/20161215144456.jpg" style="width:950px;height:90px;border:none;" /></a><div style="display:block;position:absolute;width:29px;height:16px;line-height:16px;bottom:0px;left:0px;"><img src="http://minisite.i.adsame.com/images/pudi.png" border="0" /></div></div>
+        </div>
+        <div class="picker">
+            <div class="logo_img">
+                <a target="_blank" href="http://www.eastmoney.com">
+                    <img src="/images/logo_new.gif" alt="" />
+                </a>
+                <a target="_blank" href="http://data.eastmoney.com/center/">
+                    <img src="/images/data_logo.png" alt="" />
+                </a>
+            </div>
+            <div class="expand">
+                <span><b class="icon globle"></b><a target="_blank" href="http://kuaixun.eastmoney.com/">全球财经快讯</a></span>
+                <span><b class="icon quote"></b><a target="_blank" href="http://quote.eastmoney.com/center/">行情中心</a></span>
+                <span><b class="icon data"></b><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=953">Choice数据</a></span>
+            </div>
+            <div id="Header_tj_Bull" class="remark">
+                <div class="inp-search">
+                    <div class="inp-txt-wrap" style="position:relative;border-left:1px solid #3A5E95;z-index:1001;">
+                        <form action="" method="get" target="_blank" style="position: relative;">
+                            <input type="text" maxlength="40" class="inp-txt noieclear" name="StockCode_bar" id="StockCode_bar" autocomplete="off" placeholder="输代码、名称或拼音" />
+                            <input type="submit" value="搜索" class="btnNew" />
+                        <div class="suggest2017" style="width: 364px; z-index: 1000; left: 0px; top: 29px;"> <div class="suggest2017c"></div></div><div class="suggest2017hotnewt" style="left: 184px; top: 6px;">4</div></form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lableBox">
+            <div class="inner"><dl class=""><dt><a href="http://data.eastmoney.com/center/">特色</a></dt><dd><a href="http://data.eastmoney.com/stock/lhb.html">龙虎榜单</a><a href="http://data.eastmoney.com/rzrq/">融资融券</a><a href="http://data.eastmoney.com/gsrl/default.html">股市日历</a><a href="http://data.eastmoney.com/dzjy/default.html">大宗交易</a><a href="http://data.eastmoney.com/jgdy/">机构调研</a><a href="http://data.eastmoney.com/IF/Data/Contract.html?va=IF">期指持仓</a><a href="http://data.eastmoney.com/notices/">公告大全</a><a href="http://data.eastmoney.com/xuangu/">选股器</a></dd></dl><dl class=""><dt><a href="http://data.eastmoney.com/bbsj/">财报</a></dt><dd><a href="http://data.eastmoney.com/bbsj/">业绩报表</a><a href="http://data.eastmoney.com/bbsj/201706/yjyg.html">最新预告</a><a href="http://data.eastmoney.com/yjfp/">分红送配</a></dd></dl><dl class=""><dt><a href="http://data.eastmoney.com/report/">研报</a></dt><dd><a href="http://data.eastmoney.com/report/">个股研报</a><a href="http://data.eastmoney.com/report/hyyb.html">行业研报</a><a href="http://data.eastmoney.com/report/ylyc.html">盈利预测</a></dd></dl><dl class="dlClearfix"><dt><a href="http://data.eastmoney.com/xg/">新股</a></dt><dd><a href="http://data.eastmoney.com/xg/xg/default.html">新股申购</a><a href="http://data.eastmoney.com/xg/xg/calendar.html">新股日历</a><a href="http://data.eastmoney.com/xg/gh/default.html">新股上会</a></dd></dl><dl class=""><dt><a href="http://data.eastmoney.com/zjlx/">资金</a></dt><dd><a href="http://data.eastmoney.com/zjlx/dpzjlx.html">大盘资金</a><a href="http://data.eastmoney.com/zjlx/detail.html">个股资金</a><a href="http://data.eastmoney.com/bkzj/">板块资金</a><a href="http://data.eastmoney.com/bkzj/hgt.html">沪港通</a></dd></dl><dl class=""><dt><a href="http://fund.eastmoney.com/data/">基金</a></dt><dd><a href="http://fund.eastmoney.com/fund.html">基金净值</a><a href="http://fund.eastmoney.com/fundguzhi.html">基金估值</a><a href="http://fund.eastmoney.com/data/fundranking.html">基金排行</a></dd></dl><dl class=""><dt><a href="http://data.eastmoney.com/cjsj/cpi.html">经济</a></dt><dd><a href="http://data.eastmoney.com/cjsj/cpi.html">CPI</a><a href="http://data.eastmoney.com/cjsj/ppi.html">PPI</a><a href="http://data.eastmoney.com/cjsj/pmi.html">PMI</a><a href="http://data.eastmoney.com/cjsj/gdp.html">GDP</a><a href="http://data.eastmoney.com/cjsj/yhll.html">利率</a><a href="http://data.eastmoney.com/cjsj/newhouse.html">房价</a></dd></dl></div>
+        </div>
+        <div class="centerbox">
+            <h2><i class="icon2"></i><a target="_blank" href="http://quote.eastmoney.com/center/">行情中心</a></h2>
+            <div class="dlable">
+                <a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=654">指数</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=655">期指</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=3646">期权</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=656">个股</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=657">板块</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=658">排行</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=660">新股</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=661">基金</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=663">港股</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=665">美股</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=666">期货</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=667">外汇</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=668">黄金</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=669">自选股</a>|<a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=670">自选基金</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="http://emres.dfcfw.com/public/js/topnav950.js?v=20160822" type="text/javascript"></script><div class="top-nav-wrap"><div class="topnavmain" id="fixMenuBar"><div class="tw-nav"><a target="_blank" href="http://www.eastmoney.com/" class="sitemap">网站首页</a><a href="javascript:;" id="addfavlink" target="_self" class="sitemap">加收藏</a><div class="down-menu wz5"><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=431" class="category red">移动客户端</a><ul><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_app_dcsy_top1_01_01_01_1">东方财富iPhone版</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_app_dcsy_top1_01_02_01_1">东方财富Android版</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_app_dcsy_top1_01_03_01_1">东方财富WinPhone版</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_app_dcsy_top1_02_02_01_1">东方财富Pad版</a></li><li><a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=3120">天天基金iPhone版</a></li><li><a target="_blank" href="http://js1.eastmoney.com/tg.aspx?ID=3121">天天基金安卓版</a></li><li><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=1777">股吧iPhone版</a></li><li><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=1778">股吧安卓版</a></li><li><a target="_blank" href="http://cp.eastmoney.com/20170214cj/index.html">东方财富小程序</a></li></ul></div><div class="down-menu wz4"><a target="_blank" href="http://cp.eastmoney.com/cp20160704_target/index.html" class="category">东方财富</a><ul><li class="tit blue"><span>免费版</span></li><li><a target="_blank" href="http://cp.eastmoney.com/20160513/index.html?tz=webtg_l1_act_qqgs01_01_01_01_0">PC版</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_mac_dcsy_top_01_04_03_1">Mac版</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_app_dcsy_top1_02_02_01_1">ipad版</a></li><li class="tit red"><span>收费增值版</span></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_pc_dcsy_top1_02_02_01_1 ">Level-2极速版</a></li><li><a target="_blank" href="https://acttg.eastmoney.com/pub/web_act_161118ggl2_hdrk_01_01_21_0">港股Level-2</a></li><li><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=349">Level-2决策版</a></li><li><span class="red"><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=1483">投资大师</a></span></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_jcb_dcsy_tzdsxfb_01_01_01_1">先锋版</a></li><li><a target="_blank" href="https://acttg.eastmoney.com/pub/web_jcb_dcsy_lhb_01_01_01_0">领航版</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_jcb_dcsy_qkb_01_01_01_0">乾坤宝</a></li></ul></div><div class="down-menu"><a target="_blank" href="http://fund.eastmoney.com/" class="category">天天基金网</a><ul><li><a target="_blank" href="https://trade.1234567.com.cn/login">基金交易</a></li><li><a target="_blank" href="http://huoqibao.1234567.com.cn/">活期宝</a></li><li><a target="_blank" href="http://fund.eastmoney.com/favor.html">自选基金</a></li><li><a target="_blank" href="http://fund.eastmoney.com/fund.html">基金净值</a></li><li><a target="_blank" href="http://fund.eastmoney.com/fundguzhi.html">基金估值</a></li><li><a target="_blank" href="http://fund.eastmoney.com/data/fundranking.html">基金排行</a></li><li><a target="_blank" href="http://fund.eastmoney.com/data/fundrating.html">基金评级</a></li><li><a target="_blank" href="http://fund.eastmoney.com/dingtou/">基金定投</a></li><li><a target="_blank" href="http://fund.eastmoney.com/tradeindex.html">基金超市</a></li><li><a target="_blank" href="http://fund.eastmoney.com/daogou/">基金导购</a></li></ul></div><div class="down-menu wz6"><a target="_blank" href="http://acttg.eastmoney.com/pub/web_kh_dcsy_jycdl_01_01_01_1" class="category">东方财富证券</a><ul><li><a target="_blank" href="https://jy.xzsec.com/Trade/Buy">证券交易</a></li><li><a target="_blank" href="http://gpkh.eastmoney.com/">万2.5佣金开户</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_kh_dcsy_jydnkh_01_01_01_0">电脑开户</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_kh_dcsy_jysjkh_01_01_01_0">手机开户</a></li><li><a target="_blank" href="https://kh.eastmoney.com/q/process">开户进度查询</a></li><li><a target="_blank" href="https://kh.eastmoney.com/q/result">查询开户结果</a></li><li><a target="_blank" href="https://kh.eastmoney.com/q/cuacctid">查询资金账号</a></li><li><a target="_blank" href="https://acttg.eastmoney.com/pub/pctg_hskh_act_dbdfcfzq_01_01_01_0">证券交易客户端</a></li></ul></div><div class="down-menu wz5"><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=789" class="category">Choice数据</a><ul><li><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=1928">Choice金融终端</a></li><li><a target="_blank" href="http://js5.eastmoney.com/tg.aspx?ID=1929">Choice数据服务</a></li></ul></div><div class="down-menu wz2"><a target="_blank" href="http://guba.eastmoney.com/" class="category">股吧</a><ul><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_gubaapp_dcsy_top1_06_01_01_1">手机版下载</a></li><li><a target="_blank" href="http://iguba.eastmoney.com/">我的股吧</a></li><li><a target="_blank" href="http://guba.eastmoney.com/remenba.aspx?type=2">热门主题</a></li><li><a target="_blank" href="http://guba.eastmoney.com/remenba.aspx?type=1">热门个股</a></li><li><a target="_blank" href="http://gubatopic.eastmoney.com/">热门话题</a></li><li><a target="_blank" href="http://guba.eastmoney.com/ft_list.aspx">股吧访谈</a></li><li><a target="_blank" href="http://guba.eastmoney.com/qa/qa_list.aspx">问董秘</a></li></ul></div></div><div class="tw-login"><div class="down-menu wz2" id="loginMenu"><a href="https://passport.eastmoney.com/pub/login?backurl=http%3A//data.eastmoney.com/report/%23dHA9MCZjZz0wJmR0PTImcGFnZT0x" target="_blank" class="category">登录</a></div><div class="down-menu wz4"><a target="_blank" href="https://jy.xzsec.com/Trade/Buy" class="category">证券交易</a><ul><li><a target="_blank" href="https://jy.xzsec.com/Trade/Buy">在线交易</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_kh_dcsy_jyagkh_01_01_01_0">万2.5佣金开户</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_kh_dcsy_jydnkh_01_01_01_0">电脑开户</a></li><li><a target="_blank" href="http://acttg.eastmoney.com/pub/web_kh_dcsy_jysjkh_01_01_01_0">手机开户</a></li><li><a target="_blank" href="https://jy.xzsec.com/Search/Position">资金持仓</a></li><li><a target="_blank" href="https://jy.xzsec.com/Search/Orders">交易查询</a></li><li><a target="_blank" href="https://jy.xzsec.com/MarginSearch/MyAssets">融资融券</a></li><li><a target="_blank" href="https://jy.xzsec.com/Trade/NewBuy">新股申购</a></li><li><a target="_blank" href="https://jy.xzsec.com/SchroederFund/Index">天天宝</a></li><li><a target="_blank" href="https://jy.xzsec.com/HKTrade/HKBuy">港股通</a></li><li><a target="_blank" href="https://acttg.eastmoney.com/pub/pctg_hskh_act_dbzqjy_01_01_01_0">交易客户端</a></li></ul></div><div class="down-menu wz4"><a target="_blank" href="https://trade.1234567.com.cn/Login" class="category">基金交易</a><ul><li><a target="_blank" href="https://trade.1234567.com.cn/MyAssets/Default">我的资产</a></li><li><a target="_blank" href="https://trade.1234567.com.cn/xjb/index">活期宝</a></li><li><a target="_blank" href="https://trade.1234567.com.cn/dqb/default">定期宝</a></li><li><a target="_blank" href="https://trade.1234567.com.cn/zsb/default">指数宝</a></li><li><a target="_blank" href="https://trade.1234567.com.cn/FundtradePage/default2">买基金</a></li><li><a target="_blank" href="https://trade.1234567.com.cn/login?direct_url=/FundtradePage/redemption">卖基金</a></li><li><a target="_blank" href="https://trade.1234567.com.cn/Investment/default">基金定投</a></li><li><a target="_blank" href="https://trade.1234567.com.cn/reg/">免费开户</a></li><li><a target="_blank" href="http://fundact.eastmoney.com/app/">手机客户端</a></li></ul></div></div></div></div>
+    <script src="http://hqres.eastmoney.com/EMQuote_Lib/js/qphf.js?r4900" charset="gbk" type="text/javascript"></script>
+    <script src="/js_001/public_common_tools.js" type="text/javascript"></script>
+    <script src="/js_001/master.js" charset="gbk" type="text/javascript"></script>
+
+    <div class="mainFrame">
+        <div class="maincont">
+            <div class="cnBox" style="overflow: visible;">
+                <div class="titlebar" style="overflow: visible;">
+                    <b class="el"></b>
+                    <div class="tit" id="datatitle">
+                        机构研究报告中心
+                    </div>
+                    <div class="tit-tips" style="float: left; padding-left: 100px;">
+                        <span class="tit-tips-tit">个股研究报告：</span>
+                        <div class="tit-tips-search" style="width: 216px; z-index: 9999; margin-top: 5px;">
+                            <form method="get" target="_self"><input class="sinput" name="report_bar" id="report_bar" type="text" autocomplete="off" /></form>
+                            <div onclick="javascript:ggyb_search('report_bar')">
+                                <img src="../images/btn_search_blue.gif" alt="查询" title="查询" style="margin-top: 1px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="favor" style="float: left; margin-left: 100px;">
+                        <img src="/images/update.png" title="查看最新" id="dt_1_update" />
+                        <img src="/images/favor.png" title="收藏本页" onclick="AddFavor();" />
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="catecontR" style="margin-bottom: 0px;">
+                        <ul id="cate_1">
+                            <li class="at">个股研报</li>
+                            <li>新股研报</li>
+                            <li>盈利预测</li>
+                            <li>行业研报</li>
+                            <li>策略报告</li>
+                            <li>券商晨会</li>
+                            <li>宏观研究</li>
+
+
+                        </ul>
+                        <script type="text/javascript">
+                            var zz = new StockSuggest("report_bar", {
+                                text: "输代码、名称或拼音",
+                                type: "ABSTOCK",
+                                autoSubmit: false,
+                                width: 200,
+                                header: ["选项", "代码", "名称", "类型"],
+                                body: [-1, 1, 4, -2],
+                                callback: function (ag) { window.open('/report/' + ag["code"] + '.html'); }
+                            });
+                            function ggyb_search(bb) {
+                                var s1 = document.getElementById(bb).value;
+                                var s = escape(s1);
+                                if (s1 == "输代码、名称或拼音" || s1 == "" || isNaN(parseInt(s1)) || s1.length != 6) {
+                                    alert("请输入所要查询股票的代码！");
+                                    return false;
+                                } else {
+                                    var url = '/report/' + s1 + '.html';
+                                    window.open(url);
+                                }
+                            }
+                            tiny.tabSliding("cate_1", "li", "at", "", "click", function (num) {
+                                var urlArr = ["",
+                                "/report/",
+                                "/report/xg.html",
+                                "/report/ylyc.html",
+                                "/report/hyyb.html",
+                                "/report/clbg.html",
+                                "/report/qsch.html",
+                                "/report/hgyj.html",
+                                //"/report/jgyxl.html",
+                                //"/report/option.html"
+                                ];
+                                if (urlArr.length &gt;= num) {
+                                    window.location.href = urlArr[num];
+                                }
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="line-item">
+                    <span class="line-tit">评级类别：</span>
+                    <ul id="slt-tp-cont">
+                        <li class="at" val="0"><a hidefocus="true" href="javascript:;" onclick="sltType(this);return false;">全部</a></li>
+                        <li val="1"><a hidefocus="true" href="javascript:void(0);" onclick="sltType(this);return false;">买入</a></li>
+                        <li val="2"><a hidefocus="true" href="javascript:;" onclick="sltType(this);return false;">增持</a></li>
+                        <li val="3"><a hidefocus="true" href="javascript:;" onclick="sltType(this);return false;">中性</a></li>
+                        <li val="4"><a hidefocus="true" href="javascript:;" onclick="sltType(this);return false;">减持</a></li>
+                        <li val="5"><a hidefocus="true" href="javascript:;" onclick="sltType(this);return false;">卖出</a></li>
+                    </ul>
+                    <span class="line-tit">评级变动：</span>
+                    <ul id="slt-cg-cont">
+                        <li class="at" val="0"><a hidefocus="true" href="javascript:;" onclick="sltChange(this);return false;">全部</a></li>
+                        <li val="1"><a hidefocus="true" href="javascript:;" onclick="sltChange(this);return false;">维持</a></li>
+                        <li val="2"><a hidefocus="true" href="javascript:;" onclick="sltChange(this);return false;">调高</a></li>
+                        <li val="3"><a hidefocus="true" href="javascript:;" onclick="sltChange(this);return false;">调低</a></li>
+                        <li val="4"><a hidefocus="true" href="javascript:;" onclick="sltChange(this);return false;">首次</a></li>
+                        <li val="5"><a hidefocus="true" href="javascript:;" onclick="sltChange(this);return false;">无</a></li>
+                    </ul>
+                    <span class="line-tit">报告日期：</span>
+                    <select onchange="sltDate(this)" id="slt-dt-cont" class="select">
+                        <option value="0">一周内</option>
+                        <option value="1">一月内</option>
+                        <option value="2">半年内</option>
+                        <option value="3">一年内</option>
+                        <option value="4" selected="">两年内</option>
+                    </select>
+                </div>
+
+
+
+                <div class="line-item last-line">
+                    <span class="line-tit"><b>选择结果：</b></span>
+                    <span class="slt-list-cont" id="slt-list-cont"></span>
+                    <span class="slt-list-cont">
+                        <span class="list-nums">共有(<span id="list_num">14424</span>)篇研究报告</span>
+                        <span class="his"><a hidefocus="true" href="javascript:resetAll();" target="_self" id="resetAll" style="display: none;">重新选择</a></span>
+                        <a style="font-weight: bold; color: red;margin-right:20px; text-decoration: underline;float:right;" href="http://js5.eastmoney.com/tg.aspx?ID=2765">随时掌握机构最新研报，免费推送</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="s6"></div>
+    <div class="mainFrame">
+        <div class="maincont">
+            <div class="cnBox">
+                <div class="titlebar">
+                    <b class="el0"></b>
+                    <div class="tit">
+                        最新研报
+                    </div>
+                    <div class="cate-tips">
+                        [<a href="http://finance.eastmoney.com/news/1621,20151211574859792.html">帮助说明</a>]
+						[<a href="http://corp.eastmoney.com/Lianxi_liuyan.asp">意见反馈</a>]
+                    </div>
+                </div>
+                <div class="content tb14">
+                    <table cellpadding="0" cellspacing="0" class="t1" id="dt_1">
+                        <thead class="h432">
+                            <tr>
+                                <th rowspan="2" style="width: 30px; padding: 0px;">序号</th>
+                                <th rowspan="2" style="width: 43px; padding: 0px;">日期</th>
+                                <th rowspan="2" style="width: 56px; padding: 0px;">代码</th>
+                                <th rowspan="2" style="width: 66px; padding: 0px;">名称</th>
+                                <th rowspan="2" style="width: 74px; padding: 0px;">相关</th>
+                                <th rowspan="2" style="width: 284px; padding: 0px;">研报</th>
+                                <th rowspan="2" style="width: 66px; padding: 0px;">原文评级</th>
+                                <th rowspan="2" style="width: 57px; padding: 0px;">评级变动</th>
+                                <th rowspan="2" style="width: 86px; padding: 0px;">机构</th>
+                                <th colspan="2" id="YearOne">2017预测</th>
+                                <th colspan="2" id="YearTwo">2018预测</th>
+                            </tr>
+                            <tr>
+                                <th style="width: 50px; padding: 0px;"> 收益 </th>
+                                <th style="width: 60px; padding: 0px;">市盈率</th>
+                                <th style="width: 42px; padding: 0px;"> 收益 </th>
+                                <th style="width: 51px; padding: 0px;">市盈率</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr class=""><td>1</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/601117.html" class="hqPopCls" data_code="601117" data_name="中国化学">601117</a></td><td><a href="http://data.eastmoney.com/stockdata/601117.html" class="hqPopCls" data_code="601117" data_name="中国化学">中国化学</a></td><td><a href="/report/601117.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,601117.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwhLX13qASearchReport.html" title="1月订单大幅增长，收入转化加速">1月订单大幅增长，收入转化加速</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000073_0.html">华泰证券</a></td><td>0.410</td><td>15.89</td><td>0.540</td><td>12.24</td></tr><tr class="odd"><td>2</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002714.html" class="hqPopCls" data_code="002714" data_name="牧原股份">002714</a></td><td><a href="http://data.eastmoney.com/stockdata/002714.html" class="hqPopCls" data_code="002714" data_name="牧原股份">牧原股份</a></td><td><a href="/report/002714.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002714.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnETSASearchReport.html" title="年报点评：成本优势显著，出栏快速增长">年报点评：成本优势显著，出栏快速增长</a></div></td><td>增持</td><td>首次</td><td><a href="/report/10001055_0.html">国海证券</a></td><td>1.970</td><td>25.88</td><td>1.970</td><td>25.90</td></tr><tr class=""><td>3</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/601799.html" class="hqPopCls" data_code="601799" data_name="星宇股份">601799</a></td><td><a href="http://data.eastmoney.com/stockdata/601799.html" class="hqPopCls" data_code="601799" data_name="星宇股份">星宇股份</a></td><td><a href="/report/601799.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,601799.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnJ4vASearchReport.html" title="员工持股绑定核心高管与技术人员，助力产品升级，进口替代加速进行中">员工持股绑定核心高管与技术人员，助力产品升级，进口替代加速进行中</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>1.670</td><td>26.00</td><td>2.210</td><td>20.00</td></tr><tr class="odd"><td>4</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002191.html" class="hqPopCls" data_code="002191" data_name="劲嘉股份">002191</a></td><td><a href="http://data.eastmoney.com/stockdata/002191.html" class="hqPopCls" data_code="002191" data_name="劲嘉股份">劲嘉股份</a></td><td><a href="/report/002191.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002191.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnJ4xASearchReport.html" title="公司回购股份彰显未来发展信心，大包装和大健康业务持续推进">公司回购股份彰显未来发展信心，大包装和大健康业务持续推进</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>0.390</td><td>19.00</td><td>0.500</td><td>15.00</td></tr><tr class=""><td>5</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300203.html" class="hqPopCls" data_code="300203" data_name="聚光科技">300203</a></td><td><a href="http://data.eastmoney.com/stockdata/300203.html" class="hqPopCls" data_code="300203" data_name="聚光科技">聚光科技</a></td><td><a href="/report/300203.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300203.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnJ5VASearchReport.html" title="17年实现净利润4.48亿，受费用等拖累业绩增速放缓">17年实现净利润4.48亿，受费用等拖累业绩增速放缓</a></div></td><td>买入</td><td>维持</td><td><a href="/report/10001075_0.html">广发证券</a></td><td>0.990</td><td>25.00</td><td>1.310</td><td>19.00</td></tr><tr class="odd"><td>6</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600535.html" class="hqPopCls" data_code="600535" data_name="天士力">600535</a></td><td><a href="http://data.eastmoney.com/stockdata/600535.html" class="hqPopCls" data_code="600535" data_name="天士力">天士力</a></td><td><a href="/report/600535.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600535.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnMnkASearchReport.html" title="董事长一致行动人增持公司股票，丰富的创新药梯队">董事长一致行动人增持公司股票，丰富的创新药梯队</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000157_0.html">中泰证券</a></td><td>1.268</td><td>26.42</td><td>1.442</td><td>23.24</td></tr><tr class=""><td>7</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000887.html" class="hqPopCls" data_code="000887" data_name="中鼎股份">000887</a></td><td><a href="http://data.eastmoney.com/stockdata/000887.html" class="hqPopCls" data_code="000887" data_name="中鼎股份">中鼎股份</a></td><td><a href="/report/000887.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000887.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnMnlASearchReport.html" title="新能源汽车领域获一系列突破 高管持续增持彰显信心">新能源汽车领域获一系列突破 高管持续增持彰显信心</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000157_0.html">中泰证券</a></td><td>0.880</td><td>18.00</td><td>1.060</td><td>15.00</td></tr><tr class="odd"><td>8</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300031.html" class="hqPopCls" data_code="300031" data_name="宝通科技">300031</a></td><td><a href="http://data.eastmoney.com/stockdata/300031.html" class="hqPopCls" data_code="300031" data_name="宝通科技">宝通科技</a></td><td><a href="/report/300031.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300031.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnN9LASearchReport.html" title="易幻董事长增持公司股份显示对公司长远发展坚定信心，看好公司全球化发展战略">易幻董事长增持公司股份显示对公司长远发展坚定信心，看好公司全球化发展战略</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>0.600</td><td>23.00</td><td>1.010</td><td>14.00</td></tr><tr class=""><td>9</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600258.html" class="hqPopCls" data_code="600258" data_name="首旅酒店">600258</a></td><td><a href="http://data.eastmoney.com/stockdata/600258.html" class="hqPopCls" data_code="600258" data_name="首旅酒店">首旅酒店</a></td><td><a href="/report/600258.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600258.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnNDDASearchReport.html" title="酒店行业复苏强劲，中端业态加速业绩高弹性增长">酒店行业复苏强劲，中端业态加速业绩高弹性增长</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>0.780</td><td>37.00</td><td>1.020</td><td>28.00</td></tr><tr class="odd"><td>10</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600196.html" class="hqPopCls" data_code="600196" data_name="复星医药">600196</a></td><td><a href="http://data.eastmoney.com/stockdata/600196.html" class="hqPopCls" data_code="600196" data_name="复星医药">复星医药</a></td><td><a href="/report/600196.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600196.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnNl5ASearchReport.html" title="收购禅城医院21.43%股权，龙头优势不断扩大">收购禅城医院21.43%股权，龙头优势不断扩大</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000157_0.html">中泰证券</a></td><td>1.287</td><td>29.09</td><td>1.605</td><td>23.33</td></tr><tr class=""><td>11</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002022.html" class="hqPopCls" data_code="002022" data_name="科华生物">002022</a></td><td><a href="http://data.eastmoney.com/stockdata/002022.html" class="hqPopCls" data_code="002022" data_name="科华生物">科华生物</a></td><td><a href="/report/002022.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002022.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnQgWASearchReport.html" title="股权激励公布，业绩增长可期">股权激励公布，业绩增长可期</a></div></td><td>买入</td><td>维持</td><td><a href="/report/10001005_0.html">东北证券</a></td><td>0.430</td><td>26.86</td><td>0.480</td><td>23.78</td></tr><tr class="odd"><td>12</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000888.html" class="hqPopCls" data_code="000888" data_name="峨眉山A">000888</a></td><td><a href="http://data.eastmoney.com/stockdata/000888.html" class="hqPopCls" data_code="000888" data_name="峨眉山A">峨眉山A</a></td><td><a href="/report/000888.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000888.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnReyASearchReport.html" title="严控费用下成本超预期下降，震后接待人次有望回升">严控费用下成本超预期下降，震后接待人次有望回升</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>-</td><td>-</td><td>0.440</td><td>22.00</td></tr><tr class=""><td>13</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002705.html" class="hqPopCls" data_code="002705" data_name="新宝股份">002705</a></td><td><a href="http://data.eastmoney.com/stockdata/002705.html" class="hqPopCls" data_code="002705" data_name="新宝股份">新宝股份</a></td><td><a href="/report/002705.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002705.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnSMsASearchReport.html" title="受汇兑损失影响，盈利能力承压">受汇兑损失影响，盈利能力承压</a></div></td><td>增持</td><td>首次</td><td><a href="/report/10001005_0.html">东北证券</a></td><td>0.510</td><td>21.00</td><td>0.760</td><td>14.00</td></tr><tr class="odd"><td>14</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/601117.html" class="hqPopCls" data_code="601117" data_name="中国化学">601117</a></td><td><a href="http://data.eastmoney.com/stockdata/601117.html" class="hqPopCls" data_code="601117" data_name="中国化学">中国化学</a></td><td><a href="/report/601117.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,601117.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnRfBASearchReport.html" title="1月新签订单高增长，经营拐点加速向上">1月新签订单高增长，经营拐点加速向上</a></div></td><td>买入</td><td>首次</td><td><a href="/report/80000214_0.html">国盛证券</a></td><td>0.410</td><td>16.00</td><td>0.550</td><td>12.00</td></tr><tr class=""><td>15</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/601668.html" class="hqPopCls" data_code="601668" data_name="中国建筑">601668</a></td><td><a href="http://data.eastmoney.com/stockdata/601668.html" class="hqPopCls" data_code="601668" data_name="中国建筑">中国建筑</a></td><td><a href="/report/601668.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,601668.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnRf9ASearchReport.html" title="新签订单及地产销售迎来开门红">新签订单及地产销售迎来开门红</a></div></td><td>买入</td><td>无</td><td><a href="/report/80000214_0.html">国盛证券</a></td><td>1.130</td><td>7.90</td><td>1.290</td><td>6.80</td></tr><tr class="odd"><td>16</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600167.html" class="hqPopCls" data_code="600167" data_name="联美控股">600167</a></td><td><a href="http://data.eastmoney.com/stockdata/600167.html" class="hqPopCls" data_code="600167" data_name="联美控股">联美控股</a></td><td><a href="/report/600167.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600167.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnRf6ASearchReport.html" title="内生潜力巨大，外延扩张开启">内生潜力巨大，外延扩张开启</a></div></td><td>增持</td><td>首次</td><td><a href="/report/80000037_0.html">平安证券</a></td><td>1.060</td><td>22.70</td><td>1.390</td><td>17.30</td></tr><tr class=""><td>17</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/601336.html" class="hqPopCls" data_code="601336" data_name="新华保险">601336</a></td><td><a href="http://data.eastmoney.com/stockdata/601336.html" class="hqPopCls" data_code="601336" data_name="新华保险">新华保险</a></td><td><a href="/report/601336.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,601336.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnT4QASearchReport.html" title="2018年1月保费收据点评：同比+9.95%彰显续期业务动能，珍惜0.9X18PEV吸筹良机！">2018年1月保费收据点评：同比+9.95%彰显续期业务动能，珍惜0.9X18PEV吸筹良机！</a></div></td><td>买入</td><td>维持</td><td><a href="/report/10001005_0.html">东北证券</a></td><td>1.950</td><td>26.44</td><td>2.630</td><td>19.59</td></tr><tr class="odd"><td>18</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/603579.html" class="hqPopCls" data_code="603579" data_name="荣泰健康">603579</a></td><td><a href="http://data.eastmoney.com/stockdata/603579.html" class="hqPopCls" data_code="603579" data_name="荣泰健康">荣泰健康</a></td><td><a href="/report/603579.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,603579.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnTZEASearchReport.html" title="动态点评：控股股东增持彰显信心，业绩稳健增长">动态点评：控股股东增持彰显信心，业绩稳健增长</a></div></td><td>增持</td><td>首次</td><td><a href="/report/80000126_0.html">东方财富证券</a></td><td>1.630</td><td>38.00</td><td>2.260</td><td>27.00</td></tr><tr class=""><td>19</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000661.html" class="hqPopCls" data_code="000661" data_name="长春高新">000661</a></td><td><a href="http://data.eastmoney.com/stockdata/000661.html" class="hqPopCls" data_code="000661" data_name="长春高新">长春高新</a></td><td><a href="/report/000661.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000661.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnTsSASearchReport.html" title="业绩基本符合预期，制药业务快速增长">业绩基本符合预期，制药业务快速增长</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000140_0.html">财富证券</a></td><td>-</td><td>-</td><td>5.050</td><td>30.33</td></tr><tr class="odd"><td>20</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002707.html" class="hqPopCls" data_code="002707" data_name="众信旅游">002707</a></td><td><a href="http://data.eastmoney.com/stockdata/002707.html" class="hqPopCls" data_code="002707" data_name="众信旅游">众信旅游</a></td><td><a href="/report/002707.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002707.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnTf3ASearchReport.html" title="行业复苏叠加竞争格局优化18年业绩有望反弹">行业复苏叠加竞争格局优化18年业绩有望反弹</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80084302_0.html">安信证券</a></td><td>0.320</td><td>-</td><td>0.450</td><td>33.00</td></tr><tr class=""><td>21</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600282.html" class="hqPopCls" data_code="600282" data_name="南钢股份">600282</a></td><td><a href="http://data.eastmoney.com/stockdata/600282.html" class="hqPopCls" data_code="600282" data_name="南钢股份">南钢股份</a></td><td><a href="/report/600282.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600282.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnVTzASearchReport.html" title="2017年盈利创上市以来纪录 ">2017年盈利创上市以来纪录 </a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000157_0.html">中泰证券</a></td><td>-</td><td>-</td><td>0.760</td><td>6.96</td></tr><tr class="odd"><td>22</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000932.html" class="hqPopCls" data_code="000932" data_name="*ST华菱">000932</a></td><td><a href="http://data.eastmoney.com/stockdata/000932.html" class="hqPopCls" data_code="000932" data_name="*ST华菱">*ST华菱</a></td><td><a href="/report/000932.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000932.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnVU2ASearchReport.html" title="业绩创历史新高">业绩创历史新高</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000157_0.html">中泰证券</a></td><td>-</td><td>-</td><td>1.420</td><td>6.48</td></tr><tr class=""><td>23</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600138.html" class="hqPopCls" data_code="600138" data_name="中青旅">600138</a></td><td><a href="http://data.eastmoney.com/stockdata/600138.html" class="hqPopCls" data_code="600138" data_name="中青旅">中青旅</a></td><td><a href="/report/600138.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600138.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnXSpASearchReport.html" title="17年略低于预期，未来恢复高成长">17年略低于预期，未来恢复高成长</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000073_0.html">华泰证券</a></td><td>0.760</td><td>28.95</td><td>0.960</td><td>23.14</td></tr><tr class="odd"><td>24</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600970.html" class="hqPopCls" data_code="600970" data_name="中材国际">600970</a></td><td><a href="http://data.eastmoney.com/stockdata/600970.html" class="hqPopCls" data_code="600970" data_name="中材国际">中材国际</a></td><td><a href="/report/600970.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600970.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnXSqASearchReport.html" title="两材出海排头兵，优质产能输越南">两材出海排头兵，优质产能输越南</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000073_0.html">华泰证券</a></td><td>0.530</td><td>17.29</td><td>0.830</td><td>11.19</td></tr><tr class=""><td>25</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300219.html" class="hqPopCls" data_code="300219" data_name="鸿利智汇">300219</a></td><td><a href="http://data.eastmoney.com/stockdata/300219.html" class="hqPopCls" data_code="300219" data_name="鸿利智汇">鸿利智汇</a></td><td><a href="/report/300219.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300219.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnYGqASearchReport.html" title="产业资本增持，看好公司LED车灯布局">产业资本增持，看好公司LED车灯布局</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80050806_0.html">太平洋</a></td><td>0.500</td><td>23.90</td><td>0.700</td><td>17.00</td></tr><tr class="odd"><td>26</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300192.html" class="hqPopCls" data_code="300192" data_name="科斯伍德">300192</a></td><td><a href="http://data.eastmoney.com/stockdata/300192.html" class="hqPopCls" data_code="300192" data_name="科斯伍德">科斯伍德</a></td><td><a href="/report/300192.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300192.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnYGrASearchReport.html" title="公司动态点评：标的资产业绩预告符合预期，大股东增持显信心">公司动态点评：标的资产业绩预告符合预期，大股东增持显信心</a></div></td><td>增持</td><td>维持</td><td><a href="/report/10001055_0.html">国海证券</a></td><td>0.060</td><td>126.80</td><td>0.340</td><td>22.40</td></tr><tr class=""><td>27</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600845.html" class="hqPopCls" data_code="600845" data_name="宝信软件">600845</a></td><td><a href="http://data.eastmoney.com/stockdata/600845.html" class="hqPopCls" data_code="600845" data_name="宝信软件">宝信软件</a></td><td><a href="/report/600845.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600845.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnaGUASearchReport.html" title="调研简报：智能制造行业龙头，IDC业务高成长">调研简报：智能制造行业龙头，IDC业务高成长</a></div></td><td>买入</td><td>首次</td><td><a href="/report/10001055_0.html">国海证券</a></td><td>0.560</td><td>38.00</td><td>0.750</td><td>28.00</td></tr><tr class="odd"><td>28</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600986.html" class="hqPopCls" data_code="600986" data_name="科达股份">600986</a></td><td><a href="http://data.eastmoney.com/stockdata/600986.html" class="hqPopCls" data_code="600986" data_name="科达股份">科达股份</a></td><td><a href="/report/600986.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600986.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKncrhASearchReport.html" title="数字营销快速发展，龙头地位初显">数字营销快速发展，龙头地位初显</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000140_0.html">财富证券</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr class=""><td>29</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/601799.html" class="hqPopCls" data_code="601799" data_name="星宇股份">601799</a></td><td><a href="http://data.eastmoney.com/stockdata/601799.html" class="hqPopCls" data_code="601799" data_name="星宇股份">星宇股份</a></td><td><a href="/report/601799.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,601799.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnd6mASearchReport.html" title="员工持股绑定核心高管与技术人员，助力产品升级，进口替代加速进行中">员工持股绑定核心高管与技术人员，助力产品升级，进口替代加速进行中</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>1.670</td><td>26.00</td><td>2.210</td><td>20.00</td></tr><tr class="odd"><td>30</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000977.html" class="hqPopCls" data_code="000977" data_name="浪潮信息">000977</a></td><td><a href="http://data.eastmoney.com/stockdata/000977.html" class="hqPopCls" data_code="000977" data_name="浪潮信息">浪潮信息</a></td><td><a href="/report/000977.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000977.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKngA5ASearchReport.html" title="推出重磅股权激励 奏响IT国企改革最强音">推出重磅股权激励 奏响IT国企改革最强音</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80084302_0.html">安信证券</a></td><td>0.330</td><td>50.30</td><td>0.470</td><td>34.60</td></tr><tr class=""><td>31</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300285.html" class="hqPopCls" data_code="300285" data_name="国瓷材料">300285</a></td><td><a href="http://data.eastmoney.com/stockdata/300285.html" class="hqPopCls" data_code="300285" data_name="国瓷材料">国瓷材料</a></td><td><a href="/report/300285.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300285.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnryCASearchReport.html" title="业绩符合预期，拟实施员工持股计划">业绩符合预期，拟实施员工持股计划</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000073_0.html">华泰证券</a></td><td>0.420</td><td>44.41</td><td>0.580</td><td>32.24</td></tr><tr class="odd"><td>32</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300408.html" class="hqPopCls" data_code="300408" data_name="三环集团">300408</a></td><td><a href="http://data.eastmoney.com/stockdata/300408.html" class="hqPopCls" data_code="300408" data_name="三环集团">三环集团</a></td><td><a href="/report/300408.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300408.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnty6ASearchReport.html" title="电子陶瓷龙头静待5G风起">电子陶瓷龙头静待5G风起</a></div></td><td>增持</td><td>首次</td><td><a href="/report/80000028_0.html">国联证券</a></td><td>0.640</td><td>32.14</td><td>0.880</td><td>23.26</td></tr><tr class=""><td>33</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002644.html" class="hqPopCls" data_code="002644" data_name="佛慈制药">002644</a></td><td><a href="http://data.eastmoney.com/stockdata/002644.html" class="hqPopCls" data_code="002644" data_name="佛慈制药">佛慈制药</a></td><td><a href="/report/002644.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002644.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnxTTASearchReport.html" title="2017年年报点评：继续销售推广投入，全年收入高增长">2017年年报点评：继续销售推广投入，全年收入高增长</a></div></td><td>买入</td><td>维持</td><td><a href="/report/10000296_0.html">西南证券</a></td><td>0.200</td><td>53.00</td><td>0.270</td><td>40.00</td></tr><tr class="odd"><td>34</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002787.html" class="hqPopCls" data_code="002787" data_name="华源控股">002787</a></td><td><a href="http://data.eastmoney.com/stockdata/002787.html" class="hqPopCls" data_code="002787" data_name="华源控股">华源控股</a></td><td><a href="/report/002787.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002787.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnxTaASearchReport.html" title="化工罐龙头引领行业发展，纵横拓展走向平台化">化工罐龙头引领行业发展，纵横拓展走向平台化</a></div></td><td>增持</td><td>首次</td><td><a href="/report/10001075_0.html">广发证券</a></td><td>0.350</td><td>-</td><td>0.430</td><td>26.00</td></tr><tr class=""><td>35</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002110.html" class="hqPopCls" data_code="002110" data_name="三钢闽光">002110</a></td><td><a href="http://data.eastmoney.com/stockdata/002110.html" class="hqPopCls" data_code="002110" data_name="三钢闽光">三钢闽光</a></td><td><a href="/report/002110.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002110.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKnxTjASearchReport.html" title="福建高效龙头钢企，并购助力业绩提升">福建高效龙头钢企，并购助力业绩提升</a></div></td><td>买入</td><td>维持</td><td><a href="/report/10001005_0.html">东北证券</a></td><td>2.930</td><td>6.93</td><td>3.490</td><td>5.82</td></tr><tr class="odd"><td>36</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/600535.html" class="hqPopCls" data_code="600535" data_name="天士力">600535</a></td><td><a href="http://data.eastmoney.com/stockdata/600535.html" class="hqPopCls" data_code="600535" data_name="天士力">天士力</a></td><td><a href="/report/600535.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,600535.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKp3SeASearchReport.html" title="厚积薄发，天士力跨入发展新阶段">厚积薄发，天士力跨入发展新阶段</a></div></td><td>买入</td><td>维持</td><td><a href="/report/10001075_0.html">广发证券</a></td><td>1.250</td><td>26.00</td><td>1.450</td><td>23.00</td></tr><tr class=""><td>37</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300007.html" class="hqPopCls" data_code="300007" data_name="汉威科技">300007</a></td><td><a href="http://data.eastmoney.com/stockdata/300007.html" class="hqPopCls" data_code="300007" data_name="汉威科技">汉威科技</a></td><td><a href="/report/300007.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300007.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKp5AdASearchReport.html" title="中标医药行业VOCs项目实现环保业务新突破">中标医药行业VOCs项目实现环保业务新突破</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000074_0.html">光大证券</a></td><td>0.430</td><td>27.00</td><td>0.560</td><td>21.00</td></tr><tr class="odd"><td>38</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/603078.html" class="hqPopCls" data_code="603078" data_name="江化微">603078</a></td><td><a href="http://data.eastmoney.com/stockdata/603078.html" class="hqPopCls" data_code="603078" data_name="江化微">江化微</a></td><td><a href="/report/603078.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,603078.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKp5AeASearchReport.html" title="原材料涨价拖累业绩，产能释放未来业绩可期">原材料涨价拖累业绩，产能释放未来业绩可期</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000074_0.html">光大证券</a></td><td>-</td><td>-</td><td>1.010</td><td>47.00</td></tr><tr class=""><td>39</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/603359.html" class="hqPopCls" data_code="603359" data_name="东珠景观">603359</a></td><td><a href="http://data.eastmoney.com/stockdata/603359.html" class="hqPopCls" data_code="603359" data_name="东珠景观">东珠景观</a></td><td><a href="/report/603359.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,603359.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKp6EhASearchReport.html" title="设计工程联动成效显著，区域深耕助推高速成长">设计工程联动成效显著，区域深耕助推高速成长</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80084302_0.html">安信证券</a></td><td>1.080</td><td>29.10</td><td>1.850</td><td>16.90</td></tr><tr class="odd"><td>40</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000932.html" class="hqPopCls" data_code="000932" data_name="*ST华菱">000932</a></td><td><a href="http://data.eastmoney.com/stockdata/000932.html" class="hqPopCls" data_code="000932" data_name="*ST华菱">*ST华菱</a></td><td><a href="/report/000932.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000932.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwuppri7ASearchReport.html" title="【联讯钢铁】湖南最大优质钢企，内外兼修促业绩持续增长">【联讯钢铁】湖南最大优质钢企，内外兼修促业绩持续增长</a></div></td><td>增持</td><td>首次</td><td><a href="/report/80000118_0.html">联讯证券</a></td><td>-</td><td>-</td><td>1.940</td><td>-</td></tr><tr class=""><td>41</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000725.html" class="hqPopCls" data_code="000725" data_name="京东方A">000725</a></td><td><a href="http://data.eastmoney.com/stockdata/000725.html" class="hqPopCls" data_code="000725" data_name="京东方A">京东方A</a></td><td><a href="/report/000725.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000725.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpBK8ASearchReport.html" title="调研简报：LCD寡头优势渐显 柔性OLED将成新引擎">调研简报：LCD寡头优势渐显 柔性OLED将成新引擎</a></div></td><td>-</td><td>无</td><td><a href="/report/80000113_0.html">国开证券</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr class="odd"><td>42</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300618.html" class="hqPopCls" data_code="300618" data_name="寒锐钴业">300618</a></td><td><a href="http://data.eastmoney.com/stockdata/300618.html" class="hqPopCls" data_code="300618" data_name="寒锐钴业">寒锐钴业</a></td><td><a href="/report/300618.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300618.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpDvFASearchReport.html" title="强化原料基，驱动持续增长">强化原料基，驱动持续增长</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000157_0.html">中泰证券</a></td><td>12.139</td><td>22.00</td><td>15.503</td><td>17.00</td></tr><tr class=""><td>43</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300199.html" class="hqPopCls" data_code="300199" data_name="翰宇药业">300199</a></td><td><a href="http://data.eastmoney.com/stockdata/300199.html" class="hqPopCls" data_code="300199" data_name="翰宇药业">翰宇药业</a></td><td><a href="/report/300199.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300199.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpEqLASearchReport.html" title="化学合成多肽龙头，多肽原料药放量在即">化学合成多肽龙头，多肽原料药放量在即</a></div></td><td>增持</td><td>首次</td><td><a href="/report/80000028_0.html">国联证券</a></td><td>0.420</td><td>33.00</td><td>0.570</td><td>24.00</td></tr><tr class="odd"><td>44</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002440.html" class="hqPopCls" data_code="002440" data_name="闰土股份">002440</a></td><td><a href="http://data.eastmoney.com/stockdata/002440.html" class="hqPopCls" data_code="002440" data_name="闰土股份">闰土股份</a></td><td><a href="/report/002440.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002440.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpF74ASearchReport.html" title="业绩符合预期，环保高压、库存低位、旺季临近，看好染料价格持续上涨">业绩符合预期，环保高压、库存低位、旺季临近，看好染料价格持续上涨</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>1.230</td><td>16.00</td><td>1.650</td><td>12.00</td></tr><tr class=""><td>45</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002563.html" class="hqPopCls" data_code="002563" data_name="森马服饰">002563</a></td><td><a href="http://data.eastmoney.com/stockdata/002563.html" class="hqPopCls" data_code="002563" data_name="森马服饰">森马服饰</a></td><td><a href="/report/002563.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002563.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpF75ASearchReport.html" title="渠道库存情况好转，18年业绩有望重回增长">渠道库存情况好转，18年业绩有望重回增长</a></div></td><td>增持</td><td>无</td><td><a href="/report/10001075_0.html">广发证券</a></td><td>0.420</td><td>21.90</td><td>0.580</td><td>16.00</td></tr><tr class="odd"><td>46</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/002216.html" class="hqPopCls" data_code="002216" data_name="三全食品">002216</a></td><td><a href="http://data.eastmoney.com/stockdata/002216.html" class="hqPopCls" data_code="002216" data_name="三全食品">三全食品</a></td><td><a href="/report/002216.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,002216.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpFFvASearchReport.html" title="盈利质&amp;量大幅提高，18业绩高增仍可期">盈利质&amp;量大幅提高，18业绩高增仍可期</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000037_0.html">平安证券</a></td><td>0.090</td><td>83.60</td><td>0.170</td><td>44.20</td></tr><tr class=""><td>47</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/603816.html" class="hqPopCls" data_code="603816" data_name="顾家家居">603816</a></td><td><a href="http://data.eastmoney.com/stockdata/603816.html" class="hqPopCls" data_code="603816" data_name="顾家家居">顾家家居</a></td><td><a href="/report/603816.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,603816.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpFdpASearchReport.html" title="2017年业绩预告点评：内销靓丽+外销突破实现增长，大家居领域稳健扩张">2017年业绩预告点评：内销靓丽+外销突破实现增长，大家居领域稳健扩张</a></div></td><td>增持</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>1.890</td><td>32.00</td><td>2.430</td><td>25.00</td></tr><tr class="odd"><td>48</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/300285.html" class="hqPopCls" data_code="300285" data_name="国瓷材料">300285</a></td><td><a href="http://data.eastmoney.com/stockdata/300285.html" class="hqPopCls" data_code="300285" data_name="国瓷材料">国瓷材料</a></td><td><a href="/report/300285.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,300285.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpHQ7ASearchReport.html" title="内生外延共促业绩高增长，员工持股彰显发展信心">内生外延共促业绩高增长，员工持股彰显发展信心</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000075_0.html">申万宏源</a></td><td>0.420</td><td>39.00</td><td>0.700</td><td>24.00</td></tr><tr class=""><td>49</td><td><span title="2018-02-13" class="txt">02-13</span></td><td><a href="http://quote.eastmoney.com/000888.html" class="hqPopCls" data_code="000888" data_name="峨眉山A">000888</a></td><td><a href="http://data.eastmoney.com/stockdata/000888.html" class="hqPopCls" data_code="000888" data_name="峨眉山A">峨眉山A</a></td><td><a href="/report/000888.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000888.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180213/APPINwwKpIJRASearchReport.html" title="扣非业绩大增，费用管控初显成效">扣非业绩大增，费用管控初显成效</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000073_0.html">华泰证券</a></td><td>-</td><td>-</td><td>0.460</td><td>22.36</td></tr><tr class="odd"><td>50</td><td><span title="2018-02-12" class="txt">02-12</span></td><td><a href="http://quote.eastmoney.com/000063.html" class="hqPopCls" data_code="000063" data_name="中兴通讯">000063</a></td><td><a href="http://data.eastmoney.com/stockdata/000063.html" class="hqPopCls" data_code="000063" data_name="中兴通讯">中兴通讯</a></td><td><a href="/report/000063.html" class="red">详细</a> <a href="http://guba.eastmoney.com/list,000063.html">股吧</a> </td><td><div class="report_tit"><a href="/report/20180212/APPINwTMEK1KASearchReport.html" title="出售中兴软创+与万科合作地产项目，专注主业发展专注5G">出售中兴软创+与万科合作地产项目，专注主业发展专注5G</a></div></td><td>买入</td><td>维持</td><td><a href="/report/80000031_0.html">东吴证券</a></td><td>1.110</td><td>26.00</td><td>1.240</td><td>23.00</td></tr></tbody>
+                    </table>
+                    <div id="float_head"><table id="divFloatHead" cellpadding="0" cellspacing="0" class="t1" style="position:fixed;top:0;display:none;z-index:999;"><thead class="h432">
+                            <tr>
+                                <th rowspan="2" style="width: 30px; padding: 0px;">序号</th>
+                                <th rowspan="2" style="width: 43px; padding: 0px;">日期</th>
+                                <th rowspan="2" style="width: 56px; padding: 0px;">代码</th>
+                                <th rowspan="2" style="width: 66px; padding: 0px;">名称</th>
+                                <th rowspan="2" style="width: 74px; padding: 0px;">相关</th>
+                                <th rowspan="2" style="width: 284px; padding: 0px;">研报</th>
+                                <th rowspan="2" style="width: 66px; padding: 0px;">原文评级</th>
+                                <th rowspan="2" style="width: 57px; padding: 0px;">评级变动</th>
+                                <th rowspan="2" style="width: 86px; padding: 0px;">机构</th>
+                                <th colspan="2" id="YearOne">2017预测</th>
+                                <th colspan="2" id="YearTwo">2018预测</th>
+                            </tr>
+                            <tr>
+                                <th style="width: 50px; padding: 0px;"> 收益 </th>
+                                <th style="width: 60px; padding: 0px;">市盈率</th>
+                                <th style="width: 42px; padding: 0px;"> 收益 </th>
+                                <th style="width: 51px; padding: 0px;">市盈率</th>
+                            </tr>
+                        </thead></table></div>
+                    <script>
+                        CreateHead("dt_1", "t1", "h432",false);
+                    </script>
+                    <div id="PageNav" class="PageNav" style="">
+                        <div class="Page" id="PageCont"><a href="javascript:void(0);" target="_self" class="nolink">上一页</a><span class="at">1</span><a href="javascript:void(0);" target="_self" title="转到第2页">2</a><a href="javascript:void(0);" target="_self" title="转到第3页">3</a><a href="javascript:void(0);" target="_self" title="转到第4页">4</a><a href="javascript:void(0);" target="_self" title="转到第5页">5</a><a href="javascript:void(0);" target="_self" title="转到下一组" class="next">...</a><a href="javascript:void(0);" target="_self" title="转到最后一页">289</a><a href="javascript:void(0);" target="_self" title="转到2页">下一页</a><span class="txt">  转到</span><input class="txt" id="gopage" /><a class="btn_link">Go</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="report-tip-cont" style="background: url(../images/faq_bg.gif) no-repeat left top; padding: 14px 8px 8px 6px; color: #555; position: absolute; width: 350px; height: 150px; line-height: 17px; display: none; text-align: left;">
+          原文评级为各券商自定义评级，考虑到各券商对于评级的标准和力度不同，东方财富网为便于搜索，统一按照下面5个等级分类不同券商评级。<br />
+          对应情况如下：<br />
+            买入：强烈推荐、推荐、买入、增持<br />
+            增持：增持、推荐、谨慎推荐、审慎推荐、买入<br />
+            中性：中性、持有、观望、大市同步<br />
+            减持：卖出、持有、减持、回避<br />
+            卖出：暂无<b id="report-tip-cont-close" style="position: absolute; right: 3px; bottom: 0px; font-weight: normal; color: #00298F">[关闭]</b>
+    </div>
+
+    <script src="/js/YanBao/load_report_list.js?201606021831"></script>
+
+
+    <script>
+        var data={"data":[{"author":"鲍荣富,黄骥,方晏荷","change":"维持","companyCode":"80127100","datetime":"2018-02-13T07:22:08","infoCode":"APPINwhLX13qASearchReport","insCode":"80000073","insName":"华泰证券","insStar":"5","jlrs":["2039000000","2647000000","3216000000","",""],"rate":"增持","secuFullCode":"601117.SH","secuName":"中国化学","sratingName":"增持","sy":"0.3600","syls":["15.89","12.24","10.08","",""],"sys":["0.41","0.54","0.65","",""],"title":"1月订单大幅增长，收入转化加速","profitYear":"2016","type":"1","newPrice":"6.67"},{"author":"王玮","change":"首次","companyCode":"80198868","datetime":"2018-02-13T07:25:46","infoCode":"APPINwwKnETSASearchReport","insCode":"10001055","insName":"国海证券","insStar":"3","jlrs":["2283000000","2283000000","1450000000","2850000000",""],"rate":"增持","secuFullCode":"002714.SZ","secuName":"牧原股份","sratingName":"增持","sy":"2.2500","syls":["25.88","25.9","40.7","20.7",""],"sys":["1.97","1.97","1.25","2.46",""],"title":"年报点评：成本优势显著，出栏快速增长","profitYear":"2016","type":"1","newPrice":"50.72"},{"author":"宋亭亭,蔡麟琳","change":"维持","companyCode":"80134113","datetime":"2018-02-13T07:35:31","infoCode":"APPINwwKnJ4vASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["461000000","611000000","813000000","",""],"rate":"买入","secuFullCode":"601799.SH","secuName":"星宇股份","sratingName":"买入","sy":"-","syls":["26","20","15","",""],"sys":["1.67","2.21","2.95","",""],"title":"员工持股绑定核心高管与技术人员，助力产品升级，进口替代加速进行中","profitYear":"2016","type":"1","newPrice":"47.24"},{"author":"屠亦婷,周海晨,范张翔","change":"维持","companyCode":"80101573","datetime":"2018-02-13T07:36:06","infoCode":"APPINwwKnJ4xASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["577000000","743000000","924000000","",""],"rate":"买入","secuFullCode":"002191.SZ","secuName":"劲嘉股份","sratingName":"买入","sy":"0.4400","syls":["19","15","12","",""],"sys":["0.39","0.5","0.62","",""],"title":"公司回购股份彰显未来发展信心，大包装和大健康业务持续推进","profitYear":"2016","type":"1","newPrice":"7.93"},{"author":"郭鹏","change":"维持","companyCode":"80167144","datetime":"2018-02-13T07:46:12","infoCode":"APPINwwKnJ5VASearchReport","insCode":"10001075","insName":"广发证券","insStar":"4","jlrs":["448000000","592000000","789000000","",""],"rate":"买入","secuFullCode":"300203.SZ","secuName":"聚光科技","sratingName":"买入","sy":"0.9000","syls":["25","19","14","",""],"sys":["0.99","1.31","1.74","",""],"title":"17年实现净利润4.48亿，受费用等拖累业绩增速放缓","profitYear":"2016","type":"1","newPrice":"23.60"},{"author":"江琦,张天翼","change":"维持","companyCode":"10000363","datetime":"2018-02-13T08:26:25","infoCode":"APPINwwKnMnkASearchReport","insCode":"80000157","insName":"中泰证券","insStar":"4","jlrs":["1371000000","1558000000","1754000000","",""],"rate":"增持","secuFullCode":"600535.SH","secuName":"天士力","sratingName":"增持","sy":"1.0900","syls":["26.42","23.24","20.65","",""],"sys":["1.268","1.442","1.623","",""],"title":"董事长一致行动人增持公司股票，丰富的创新药梯队","profitYear":"2016","type":"1","newPrice":"33.98"},{"author":"王华君","change":"维持","companyCode":"10001155","datetime":"2018-02-13T08:28:12","infoCode":"APPINwwKnMnlASearchReport","insCode":"80000157","insName":"中泰证券","insStar":"4","jlrs":["1083000000","1306000000","1545000000","",""],"rate":"买入","secuFullCode":"000887.SZ","secuName":"中鼎股份","sratingName":"买入","sy":"0.7600","syls":["18","15","12","",""],"sys":["0.88","1.06","1.25","",""],"title":"新能源汽车领域获一系列突破 高管持续增持彰显信心","profitYear":"2016","type":"1","newPrice":"15.30"},{"author":"顾晟","change":"维持","companyCode":"80133654","datetime":"2018-02-13T08:30:33","infoCode":"APPINwwKnN9LASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["238000000","399000000","501000000","",""],"rate":"增持","secuFullCode":"300031.SZ","secuName":"宝通科技","sratingName":"增持","sy":"0.3827","syls":["23","14","11","",""],"sys":["0.6","1.01","1.26","",""],"title":"易幻董事长增持公司股份显示对公司长远发展坚定信心，看好公司全球化发展战略","profitYear":"2016","type":"1","newPrice":"14.69"},{"author":"刘乐文","change":"维持","companyCode":"10000210","datetime":"2018-02-13T08:33:34","infoCode":"APPINwwKnNDDASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["633000000","835000000","1050000000","",""],"rate":"增持","secuFullCode":"600258.SH","secuName":"首旅酒店","sratingName":"增持","sy":"0.7196","syls":["37","28","22","",""],"sys":["0.78","1.02","1.29","",""],"title":"酒店行业复苏强劲，中端业态加速业绩高弹性增长","profitYear":"2016","type":"1","newPrice":"30.18"},{"author":"江琦,张天翼","change":"维持","companyCode":"10000156","datetime":"2018-02-13T08:38:31","infoCode":"APPINwwKnNl5ASearchReport","insCode":"80000157","insName":"中泰证券","insStar":"4","jlrs":["3211000000","4004000000","4717000000","",""],"rate":"买入","secuFullCode":"600196.SH","secuName":"复星医药","sratingName":"买入","sy":"1.2100","syls":["29.09","23.33","19.8","",""],"sys":["1.287","1.605","1.89","",""],"title":"收购禅城医院21.43%股权，龙头优势不断扩大","profitYear":"2016","type":"1","newPrice":"38.41"},{"author":"崔洁铭","change":"维持","companyCode":"10001408","datetime":"2018-02-13T09:14:14","infoCode":"APPINwwKnQgWASearchReport","insCode":"10001005","insName":"东北证券","insStar":"3","jlrs":["219000000","250000000","283000000","",""],"rate":"买入","secuFullCode":"002022.SZ","secuName":"科华生物","sratingName":"买入","sy":"0.4534","syls":["26.86","23.78","21.03","",""],"sys":["0.43","0.48","0.55","",""],"title":"股权激励公布，业绩增长可期","profitYear":"2016","type":"1","newPrice":"11.89"},{"author":"刘乐文","change":"维持","companyCode":"10001156","datetime":"2018-02-13T09:21:10","infoCode":"APPINwwKnReyASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["","233000000","280000000","325000000",""],"rate":"买入","secuFullCode":"000888.SZ","secuName":"峨眉山A","sratingName":"买入","sy":"0.3629","syls":["","22","18","16",""],"sys":["","0.44","0.53","0.62",""],"title":"严控费用下成本超预期下降，震后接待人次有望回升","profitYear":"2016","type":"1","newPrice":"10.37"},{"author":"唐凯","change":"首次","companyCode":"80094962","datetime":"2018-02-13T09:28:04","infoCode":"APPINwwKnSMsASearchReport","insCode":"10001005","insName":"东北证券","insStar":"3","jlrs":["417000000","616000000","755000000","",""],"rate":"增持","secuFullCode":"002705.SZ","secuName":"新宝股份","sratingName":"增持","sy":"0.7501","syls":["21","14","12","",""],"sys":["0.51","0.76","0.93","",""],"title":"受汇兑损失影响，盈利能力承压","profitYear":"2016","type":"1","newPrice":"10.94"},{"author":"夏天,程龙戈","change":"首次","companyCode":"80127100","datetime":"2018-02-13T09:28:24","infoCode":"APPINwwKnRfBASearchReport","insCode":"80000214","insName":"国盛证券","insStar":"3","jlrs":["2007000000","2724000000","3276000000","",""],"rate":"买入","secuFullCode":"601117.SH","secuName":"中国化学","sratingName":"买入","sy":"0.3600","syls":["16","12","10","",""],"sys":["0.41","0.55","0.66","",""],"title":"1月新签订单高增长，经营拐点加速向上","profitYear":"2016","type":"1","newPrice":"6.67"},{"author":"夏天,程龙戈","change":"","companyCode":"80120315","datetime":"2018-02-13T09:28:41","infoCode":"APPINwwKnRf9ASearchReport","insCode":"80000214","insName":"国盛证券","insStar":"3","jlrs":["33758000000","38846000000","43656000000","",""],"rate":"买入","secuFullCode":"601668.SH","secuName":"中国建筑","sratingName":"买入","sy":"0.9600","syls":["7.9","6.8","6.1","",""],"sys":["1.13","1.29","1.46","",""],"title":"新签订单及地产销售迎来开门红","profitYear":"2016","type":"1","newPrice":"9.00"},{"author":"皮秀,庞文亮","change":"首次","companyCode":"10000130","datetime":"2018-02-13T09:29:16","infoCode":"APPINwwKnRf6ASearchReport","insCode":"80000037","insName":"平安证券","insStar":"4","jlrs":["930000000","1223000000","1522000000","",""],"rate":"增持","secuFullCode":"600167.SH","secuName":"联美控股","sratingName":"推荐","sy":"1.0276","syls":["22.7","17.3","13.9","",""],"sys":["1.06","1.39","1.73","",""],"title":"内生潜力巨大，外延扩张开启","profitYear":"2016","type":"1","newPrice":"23.90"},{"author":"周磊,葛玉翔","change":"维持","companyCode":"80001630","datetime":"2018-02-13T09:32:56","infoCode":"APPINwwKnT4QASearchReport","insCode":"10001005","insName":"东北证券","insStar":"3","jlrs":["6090000000","8220000000","10090000000","",""],"rate":"买入","secuFullCode":"601336.SH","secuName":"新华保险","sratingName":"买入","sy":"1.5800","syls":["26.44","19.59","15.96","",""],"sys":["1.95","2.63","3.23","",""],"title":"2018年1月保费收据点评：同比+9.95%彰显续期业务动能，珍惜0.9X18PEV吸筹良机！","profitYear":"2016","type":"1","newPrice":"52.23"},{"author":"马建华","change":"首次","companyCode":"80396663","datetime":"2018-02-13T09:39:31","infoCode":"APPINwwKnTZEASearchReport","insCode":"80000126","insName":"东方财富证券","insStar":"","jlrs":["227620000","316640000","435790000","",""],"rate":"增持","secuFullCode":"603579.SH","secuName":"荣泰健康","sratingName":"增持","sy":"3.9400","syls":["38","27","20","",""],"sys":["1.63","2.26","3.11","",""],"title":"动态点评：控股股东增持彰显信心，业绩稳健增长","profitYear":"2016","type":"1","newPrice":"61.72"},{"author":"陈博","change":"维持","companyCode":"10000983","datetime":"2018-02-13T09:42:29","infoCode":"APPINwwKnTsSASearchReport","insCode":"80000140","insName":"财富证券","insStar":"2","jlrs":["","859450000","1112930000","1394910000",""],"rate":"买入","secuFullCode":"000661.SZ","secuName":"长春高新","sratingName":"推荐","sy":"3.0800","syls":["","30.33","23.42","18.68",""],"sys":["","5.05","6.54","8.2",""],"title":"业绩基本符合预期，制药业务快速增长","profitYear":"2016","type":"1","newPrice":"165.16"},{"author":"张龙","change":"维持","companyCode":"80198508","datetime":"2018-02-13T09:44:04","infoCode":"APPINwwKnTf3ASearchReport","insCode":"80084302","insName":"安信证券","insStar":"4","jlrs":["271700000","379200000","486700000","",""],"rate":"买入","secuFullCode":"002707.SZ","secuName":"众信旅游","sratingName":"买入","sy":"0.2600","syls":["","33","","",""],"sys":["0.32","0.45","0.58","",""],"title":"行业复苏叠加竞争格局优化18年业绩有望反弹","profitYear":"2016","type":"1","newPrice":"11.88"},{"author":"笃慧,赖福洋","change":"维持","companyCode":"10000229","datetime":"2018-02-13T10:02:33","infoCode":"APPINwwKnVTzASearchReport","insCode":"80000157","insName":"中泰证券","insStar":"4","jlrs":["","3340000000","3495000000","3643000000",""],"rate":"增持","secuFullCode":"600282.SH","secuName":"南钢股份","sratingName":"增持","sy":"0.0893","syls":["","6.96","6.65","6.38",""],"sys":["","0.76","0.79","0.83",""],"title":"2017年盈利创上市以来纪录 ","profitYear":"2016","type":"1","newPrice":"5.15"},{"author":"笃慧,赖福洋","change":"维持","companyCode":"10001194","datetime":"2018-02-13T10:04:06","infoCode":"APPINwwKnVU2ASearchReport","insCode":"80000157","insName":"中泰证券","insStar":"4","jlrs":["","4282000000","4394000000","4527000000",""],"rate":"增持","secuFullCode":"000932.SZ","secuName":"*ST华菱","sratingName":"增持","sy":"-0.3499","syls":["","6.48","6.31","6.13",""],"sys":["","1.42","1.46","1.5",""],"title":"业绩创历史新高","profitYear":"2016","type":"1","newPrice":"9.09"},{"author":"梅昕","change":"维持","companyCode":"10000108","datetime":"2018-02-13T10:21:09","infoCode":"APPINwwKnXSpASearchReport","insCode":"80000073","insName":"华泰证券","insStar":"5","jlrs":["553120000","691980000","847240000","",""],"rate":"买入","secuFullCode":"600138.SH","secuName":"中青旅","sratingName":"买入","sy":"0.6700","syls":["28.95","23.14","18.9","",""],"sys":["0.76","0.96","1.17","",""],"title":"17年略低于预期，未来恢复高成长","profitYear":"2016","type":"1","newPrice":"22.38"},{"author":"鲍荣富,王玮嘉,张雪蓉","change":"维持","companyCode":"10001441","datetime":"2018-02-13T10:25:51","infoCode":"APPINwwKnXSqASearchReport","insCode":"80000073","insName":"华泰证券","insStar":"5","jlrs":["938270000","1450000000","1716000000","",""],"rate":"买入","secuFullCode":"600970.SH","secuName":"中材国际","sratingName":"买入","sy":"0.2900","syls":["17.29","11.19","9.46","",""],"sys":["0.53","0.83","0.98","",""],"title":"两材出海排头兵，优质产能输越南","profitYear":"2016","type":"1","newPrice":"9.37"},{"author":"刘翔","change":"维持","companyCode":"80173431","datetime":"2018-02-13T10:27:50","infoCode":"APPINwwKnYGqASearchReport","insCode":"80050806","insName":"太平洋","insStar":"3","jlrs":["336000000","472000000","598000000","",""],"rate":"买入","secuFullCode":"300219.SZ","secuName":"鸿利智汇","sratingName":"买入","sy":"0.2100","syls":["23.9","17","13.43","",""],"sys":["0.5","0.7","0.89","",""],"title":"产业资本增持，看好公司LED车灯布局","profitYear":"2016","type":"1","newPrice":"11.35"},{"author":"张蕾","change":"维持","companyCode":"80169464","datetime":"2018-02-13T10:31:12","infoCode":"APPINwwKnYGrASearchReport","insCode":"10001055","insName":"国海证券","insStar":"3","jlrs":["14360000","81470000","97300000","",""],"rate":"增持","secuFullCode":"300192.SZ","secuName":"科斯伍德","sratingName":"增持","sy":"0.1500","syls":["126.8","22.4","18.7","",""],"sys":["0.06","0.34","0.4","",""],"title":"公司动态点评：标的资产业绩预告符合预期，大股东增持显信心","profitYear":"2016","type":"1","newPrice":"7.52"},{"author":"宝幼琛,孙乾","change":"首次","companyCode":"10000794","datetime":"2018-02-13T10:46:20","infoCode":"APPINwwKnaGUASearchReport","insCode":"10001055","insName":"国海证券","insStar":"3","jlrs":["443000000","593000000","761000000","",""],"rate":"买入","secuFullCode":"600845.SH","secuName":"宝信软件","sratingName":"买入","sy":"0.4290","syls":["38","28","22","",""],"sys":["0.56","0.75","0.96","",""],"title":"调研简报：智能制造行业龙头，IDC业务高成长","profitYear":"2016","type":"1","newPrice":"21.99"},{"author":"何晨,何颖","change":"维持","companyCode":"10001358","datetime":"2018-02-13T11:04:19","infoCode":"APPINwwKncrhASearchReport","insCode":"80000140","insName":"财富证券","insStar":"2","jlrs":["","","","",""],"rate":"买入","secuFullCode":"600986.SH","secuName":"科达股份","sratingName":"推荐","sy":"0.4800","syls":["","","","",""],"sys":["","","","",""],"title":"数字营销快速发展，龙头地位初显","profitYear":"2016","type":"1","newPrice":"9.30"},{"author":"宋亭亭,蔡麟琳","change":"维持","companyCode":"80134113","datetime":"2018-02-13T11:09:00","infoCode":"APPINwwKnd6mASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["461000000","611000000","813000000","",""],"rate":"买入","secuFullCode":"601799.SH","secuName":"星宇股份","sratingName":"买入","sy":"-","syls":["26","20","15","",""],"sys":["1.67","2.21","2.95","",""],"title":"员工持股绑定核心高管与技术人员，助力产品升级，进口替代加速进行中","profitYear":"2016","type":"1","newPrice":"47.24"},{"author":"胡又文,吕伟","change":"维持","companyCode":"10001227","datetime":"2018-02-13T11:34:34","infoCode":"APPINwwKngA5ASearchReport","insCode":"80084302","insName":"安信证券","insStar":"4","jlrs":["419100000","609600000","1082500000","",""],"rate":"买入","secuFullCode":"000977.SZ","secuName":"浪潮信息","sratingName":"买入","sy":"0.2882","syls":["50.3","34.6","19.5","",""],"sys":["0.33","0.47","0.84","",""],"title":"推出重磅股权激励 奏响IT国企改革最强音","profitYear":"2016","type":"1","newPrice":"17.25"},{"author":"刘曦","change":"维持","companyCode":"80132727","datetime":"2018-02-13T13:05:58","infoCode":"APPINwwKnryCASearchReport","insCode":"80000073","insName":"华泰证券","insStar":"5","jlrs":["253930000","349770000","446910000","",""],"rate":"增持","secuFullCode":"300285.SZ","secuName":"国瓷材料","sratingName":"增持","sy":"0.4500","syls":["44.41","32.24","25.24","",""],"sys":["0.42","0.58","0.75","",""],"title":"业绩符合预期，拟实施员工持股计划","profitYear":"2016","type":"1","newPrice":"17.50"},{"author":"曹亮","change":"首次","companyCode":"80189556","datetime":"2018-02-13T13:11:54","infoCode":"APPINwwKnty6ASearchReport","insCode":"80000028","insName":"国联证券","insStar":"4","jlrs":["1109440000","1532960000","2061970000","",""],"rate":"增持","secuFullCode":"300408.SZ","secuName":"三环集团","sratingName":"推荐","sy":"0.6200","syls":["32.14","23.26","17.29","",""],"sys":["0.64","0.88","1.18","",""],"title":"电子陶瓷龙头静待5G风起","profitYear":"2016","type":"1","newPrice":"21.37"},{"author":"朱国广,何治力,张肖星","change":"维持","companyCode":"80023998","datetime":"2018-02-13T13:33:56","infoCode":"APPINwwKnxTTASearchReport","insCode":"10000296","insName":"西南证券","insStar":"3","jlrs":["103080000","135520000","177630000","",""],"rate":"买入","secuFullCode":"002644.SZ","secuName":"佛慈制药","sratingName":"买入","sy":"0.1193","syls":["53","40","31","",""],"sys":["0.2","0.27","0.35","",""],"title":"2017年年报点评：继续销售推广投入，全年收入高增长","profitYear":"2016","type":"1","newPrice":"10.71"},{"author":"赵中平,汪达","change":"首次","companyCode":"80357728","datetime":"2018-02-13T13:34:49","infoCode":"APPINwwKnxTaASearchReport","insCode":"10001075","insName":"广发证券","insStar":"4","jlrs":["102000000","124000000","147000000","",""],"rate":"增持","secuFullCode":"002787.SZ","secuName":"华源控股","sratingName":"谨慎增持","sy":"0.7600","syls":["","26","","",""],"sys":["0.35","0.43","0.51","",""],"title":"化工罐龙头引领行业发展，纵横拓展走向平台化","profitYear":"2016","type":"1","newPrice":"9.26"},{"author":"刘立喜,吴狄","change":"维持","companyCode":"80008461","datetime":"2018-02-13T13:37:53","infoCode":"APPINwwKnxTjASearchReport","insCode":"10001005","insName":"东北证券","insStar":"3","jlrs":["4028000000","5587000000","5783000000","",""],"rate":"买入","secuFullCode":"002110.SZ","secuName":"三钢闽光","sratingName":"买入","sy":"0.9800","syls":["6.93","5.82","5.63","",""],"sys":["2.93","3.49","3.61","",""],"title":"福建高效龙头钢企，并购助力业绩提升","profitYear":"2016","type":"1","newPrice":"21.38"},{"author":"吴文华,罗佳荣","change":"维持","companyCode":"10000363","datetime":"2018-02-13T14:05:47","infoCode":"APPINwwKp3SeASearchReport","insCode":"10001075","insName":"广发证券","insStar":"4","jlrs":["1350000000","1564000000","1882000000","",""],"rate":"买入","secuFullCode":"600535.SH","secuName":"天士力","sratingName":"买入","sy":"1.0900","syls":["26","23","19","",""],"sys":["1.25","1.45","1.74","",""],"title":"厚积薄发，天士力跨入发展新阶段","profitYear":"2016","type":"1","newPrice":"33.98"},{"author":"王威,陈俊鹏","change":"维持","companyCode":"80133634","datetime":"2018-02-13T14:20:36","infoCode":"APPINwwKp5AdASearchReport","insCode":"80000074","insName":"光大证券","insStar":"5","jlrs":["125650000","163720000","198460000","",""],"rate":"买入","secuFullCode":"300007.SZ","secuName":"汉威科技","sratingName":"买入","sy":"0.3100","syls":["27","21","17","",""],"sys":["0.43","0.56","0.68","",""],"title":"中标医药行业VOCs项目实现环保业务新突破","profitYear":"2016","type":"1","newPrice":"11.52"},{"author":"裘孝锋,陈冠雄","change":"维持","companyCode":"80426002","datetime":"2018-02-13T14:21:09","infoCode":"APPINwwKp5AeASearchReport","insCode":"80000074","insName":"光大证券","insStar":"5","jlrs":["","60860000","72550000","95560000",""],"rate":"增持","secuFullCode":"603078.SH","secuName":"江化微","sratingName":"增持","sy":"1.5320","syls":["","47","39","30",""],"sys":["","1.01","1.21","1.59",""],"title":"原材料涨价拖累业绩，产能释放未来业绩可期","profitYear":"2016","type":"1","newPrice":"46.21"},{"author":"苏多永","change":"维持","companyCode":"80192842","datetime":"2018-02-13T14:39:12","infoCode":"APPINwwKp6EhASearchReport","insCode":"80084302","insName":"安信证券","insStar":"4","jlrs":["245000000","422100000","609100000","",""],"rate":"买入","secuFullCode":"603359.SH","secuName":"东珠景观","sratingName":"买入","sy":"1.0900","syls":["29.1","16.9","11.7","",""],"sys":["1.08","1.85","2.68","",""],"title":"设计工程联动成效显著，区域深耕助推高速成长","profitYear":"2016","type":"1","newPrice":"30.79"},{"author":"王凤华,徐鸿飞","change":"首次","companyCode":"10001194","datetime":"2018-02-13T15:23:40","infoCode":"APPINwuppri7ASearchReport","insCode":"80000118","insName":"联讯证券","insStar":"3","jlrs":["","5864000000","6407000000","6978000000",""],"rate":"增持","secuFullCode":"000932.SZ","secuName":"*ST华菱","sratingName":"增持","sy":"-0.3499","syls":["","","","",""],"sys":["","1.94","2.12","2.31",""],"title":"【联讯钢铁】湖南最大优质钢企，内外兼修促业绩持续增长","profitYear":"2016","type":"1","newPrice":"9.09"},{"author":"崔国涛,邓垚","change":"","companyCode":"10001040","datetime":"2018-02-13T15:32:28","infoCode":"APPINwwKpBK8ASearchReport","insCode":"80000113","insName":"国开证券","insStar":"","jlrs":["","","","",""],"rate":"","secuFullCode":"000725.SZ","secuName":"京东方A","sratingName":"","sy":"0.0540","syls":["","","","",""],"sys":["","","","",""],"title":"调研简报：LCD寡头优势渐显 柔性OLED将成新引擎","profitYear":"2016","type":"1","newPrice":"5.53"},{"author":"陈炳辉,谢鸿鹤","change":"维持","companyCode":"80437108","datetime":"2018-02-13T16:10:58","infoCode":"APPINwwKpDvFASearchReport","insCode":"80000157","insName":"中泰证券","insStar":"4","jlrs":["1456690000","1860360000","1932070000","",""],"rate":"买入","secuFullCode":"300618.SZ","secuName":"寒锐钴业","sratingName":"买入","sy":"0.7400","syls":["22","17","16.46","",""],"sys":["12.139","15.503","16.101","",""],"title":"强化原料基，驱动持续增长","profitYear":"2016","type":"1","newPrice":"248.49"},{"author":"周静","change":"首次","companyCode":"80169980","datetime":"2018-02-13T16:19:11","infoCode":"APPINwwKpEqLASearchReport","insCode":"80000028","insName":"国联证券","insStar":"4","jlrs":["389500000","534420000","658480000","",""],"rate":"增持","secuFullCode":"300199.SZ","secuName":"翰宇药业","sratingName":"推荐","sy":"0.3300","syls":["33","24","19","",""],"sys":["0.42","0.57","0.7","",""],"title":"化学合成多肽龙头，多肽原料药放量在即","profitYear":"2016","type":"1","newPrice":"14.30"},{"author":"宋涛,沈衡","change":"维持","companyCode":"80142955","datetime":"2018-02-13T16:23:52","infoCode":"APPINwwKpF74ASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["940000000","1266000000","1470000000","",""],"rate":"增持","secuFullCode":"002440.SZ","secuName":"闰土股份","sratingName":"增持","sy":"0.8600","syls":["16","12","10","",""],"sys":["1.23","1.65","1.92","",""],"title":"业绩符合预期，环保高压、库存低位、旺季临近，看好染料价格持续上涨","profitYear":"2016","type":"1","newPrice":"20.93"},{"author":"糜韩杰","change":"","companyCode":"80169933","datetime":"2018-02-13T16:24:04","infoCode":"APPINwwKpF75ASearchReport","insCode":"10001075","insName":"广发证券","insStar":"4","jlrs":["1143000000","1562000000","1828000000","",""],"rate":"增持","secuFullCode":"002563.SZ","secuName":"森马服饰","sratingName":"谨慎增持","sy":"0.5300","syls":["21.9","16","13.7","",""],"sys":["0.42","0.58","0.68","",""],"title":"渠道库存情况好转，18年业绩有望重回增长","profitYear":"2016","type":"1","newPrice":"9.22"},{"author":"文献,刘彪,蒋寅秋","change":"维持","companyCode":"80091291","datetime":"2018-02-13T16:30:23","infoCode":"APPINwwKpFFvASearchReport","insCode":"80000037","insName":"平安证券","insStar":"4","jlrs":["73000000","138000000","236000000","",""],"rate":"买入","secuFullCode":"002216.SZ","secuName":"三全食品","sratingName":"强烈推荐","sy":"0.0500","syls":["83.6","44.2","25.8","",""],"sys":["0.09","0.17","0.29","",""],"title":"盈利质&amp;量大幅提高，18业绩高增仍可期","profitYear":"2016","type":"1","newPrice":"7.43"},{"author":"周海晨,屠亦婷,范张翔","change":"维持","companyCode":"80357620","datetime":"2018-02-13T16:41:42","infoCode":"APPINwwKpFdpASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["808000000","1039000000","1483000000","",""],"rate":"增持","secuFullCode":"603816.SH","secuName":"顾家家居","sratingName":"增持","sy":"1.6700","syls":["32","25","17","",""],"sys":["1.89","2.43","3.46","",""],"title":"2017年业绩预告点评：内销靓丽+外销突破实现增长，大家居领域稳健扩张","profitYear":"2016","type":"1","newPrice":"61.15"},{"author":"宋涛,沈衡","change":"维持","companyCode":"80132727","datetime":"2018-02-13T17:12:11","infoCode":"APPINwwKpHQ7ASearchReport","insCode":"80000075","insName":"申万宏源","insStar":"4","jlrs":["254000000","421000000","538000000","",""],"rate":"买入","secuFullCode":"300285.SZ","secuName":"国瓷材料","sratingName":"买入","sy":"0.4500","syls":["39","24","18","",""],"sys":["0.42","0.7","0.9","",""],"title":"内生外延共促业绩高增长，员工持股彰显发展信心","profitYear":"2016","type":"1","newPrice":"17.50"},{"author":"梅昕","change":"维持","companyCode":"10001156","datetime":"2018-02-13T17:19:33","infoCode":"APPINwwKpIJRASearchReport","insCode":"80000073","insName":"华泰证券","insStar":"5","jlrs":["","242740000","285680000","326880000",""],"rate":"买入","secuFullCode":"000888.SZ","secuName":"峨眉山A","sratingName":"买入","sy":"0.3629","syls":["","22.36","19","16.6",""],"sys":["","0.46","0.54","0.62",""],"title":"扣非业绩大增，费用管控初显成效","profitYear":"2016","type":"1","newPrice":"10.37"},{"author":"孙云翔","change":"维持","companyCode":"10000649","datetime":"2018-02-12T07:15:09","infoCode":"APPINwTMEK1KASearchReport","insCode":"80000031","insName":"东吴证券","insStar":"3","jlrs":["4633940000","5205710000","6056490000","",""],"rate":"买入","secuFullCode":"000063.SZ","secuName":"中兴通讯","sratingName":"买入","sy":"-0.5700","syls":["26","23","20","",""],"sys":["1.11","1.24","1.44","",""],"title":"出售中兴软创+与万科合作地产项目，专注主业发展专注5G","profitYear":"2016","type":"1","newPrice":"29.74"}],"pages":"289","update":"2018-02-13","count":"14424"};
+        var rr = new ReportRankList({ "DataUrl": "http://datainterface.eastmoney.com/" });
+        //
+        if(data!=null&amp;&amp;data.data!=null)
+        {
+            if(data.data[0].profitYear)
+            {
+                document.getElementById("YearOne").innerHTML = parseInt(data.data[0].profitYear) + 1 + "预测";
+                document.getElementById("YearTwo").innerHTML = parseInt(data.data[0].profitYear) + 2 + "预测";
+                //parseInt(data[0].profitYear) + 1 + "预测";
+                //parseInt(data[0].profitYear) + 2 + "预测";
+            }
+        }
+
+        var sltType = function (a, b, c) { rr.selectType(a, b, c) };
+        var sltChange = function (a, b, c) { rr.selectChange(a, b, c) };
+        var sltDate = function (a, b, c) { rr.selectDate(a, b, c) };
+        var sltJg = function (a, b, c) { rr.selectJg(a, b, c) };
+        var delSlt = function (a, b, c) { rr.deleteSlt(a, b, c) };
+        var showAllJgList = function (a, b, c) { rr.showAllJgList(a, b, c) };
+        var sltRemove = function (a, b, c) { rr.deleteSlt(a, b, c) };
+        var resetAll = function (a, b, c) { rr.deleteAll(a, b, c) };
+        var showTips = function (a, b, c) { rr.showTips(a, b, c) };
+
+        rr.firstInit(data);
+        //绑定浮动标题
+        CreateHead("dt_1", "t1", "h432",false);
+        _addLoadEvent(initDrawPopHq ,"divFloatHead");
+    </script>
+    <div class="s6"></div>
+    <div id="footer">
+    </div>
+
+
+    <style type="text/css">
+        .content {
+            background-color: #ffffff !important;
+        }
+
+        .etips {
+            overflow: hidden;
+        }
+
+        .bgred .checked {
+            background: url("/images/center/qg.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgred .nochecked {
+            background: url("/images/center/qgnocheck.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bggreen .checked {
+            background: url("/images/center/cs.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bggreen .nochecked {
+            background: url("/images/center/csnocheck.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgblue .checked {
+            background: url("/images/center/nc.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgblue .nochecked {
+            background: url("/images/center/ncnocheck.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgpink .checked {
+            background: url("/images/center/fs.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .bgpink .nochecked {
+            background: url("/images/center/fsnocheck.png") no-repeat center;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .eword {
+            display: inline-block;
+            margin-bottom: 10px;
+            *margin-bottom: 0px;
+            vertical-align: middle;
+            padding: 0 10px;
+        }
+    </style>
+
+<div class="spacer20">
+</div>
+
+
+
+
+
+<div class="mainFrame">
+    <div class="footer_top">
+        数据来源：<a href="http://js5.eastmoney.com/tg.aspx?ID=953" style="color: #00298F;">东方财富Choice数据</a>
+    </div>
+    <div class="footer" style="border-top: 0px;">
+        <div style="line-height: 20px;">
+            <b>郑重声明：</b>东方财富网发布此信息目的在于传播更多信息，与本网站立场无关。东方财富网不保证该信息（包括但不限于文字、数据及图表）全部或者部分内容的准确性、真实性、完整性、有效性、及时性、原创性等。相关信息并未经过本网站证实，不对您构成任何投资建议，据此操作，风险自担。
+        </div>
+        <iframe width="950" height="314" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://emres.dfcfw.com/public/footer-950-iframe.html"></iframe>
+    </div>
+</div>
+
+<script type="text/javascript">
+    _cpyno = "data";
+</script>
+<script type="text/javascript">
+    window.adDataType = "data"; //共3个值：quote，data，guba不写默认表示其他频道；
+    window.adSwitch = "both";//共3个值：both,left,right 不写默认both；
+    window.fixedBodyWidth = 950;//950,1000 不写默认1000
+    window.emLeftBodyWidth = 950;
+    window.emRightBodyWidth = 950;
+    window.switchBackTop = false;
+    //add by haibin 20150529 全站有空位导航条加机构和基金的广告（暂时写死，待加布告栏）
+    var Column_Navigation = document.getElementById("Column_Navigation");
+    if (Column_Navigation) {
+        var linkNav_HB = document.getElementById("Column_Navigation").parentNode;
+        var elem_child = linkNav_HB.childNodes;
+        for (var i = 0; i &lt; elem_child.length; i++) {
+            if (elem_child[i].nodeName == "#text" &amp;&amp; !/\s/.test(elem_child.nodeValue)) { linkNav_HB.removeChild(elem_child[i]) }
+        }
+        var chils_HB = linkNav_HB.childNodes.length;
+        if (chils_HB == 1) {
+            var gg_link = document.createElement("DIV");
+            gg_link.className = "gg_link";
+            if (Column_Navigation.clientWidth &gt; 370) {
+                gg_link.innerHTML = '&lt;a class="jg_gg" href="http://fundact.eastmoney.com/information/2015002_JYN/?spm=100004002.mw"&gt;买不到牛股？立即查看哪些板块正被机构盯上&lt;/a&gt;&lt;a class="jj_gg" href="http://stattg.eastmoney.com/10149?spm=100004002.mw"&gt;10000亿资金正在建仓股票(名单)&lt;/a&gt;';
+            }
+            else {
+                gg_link.innerHTML = '&lt;a class="jg_gg" href="http://fundact.eastmoney.com/information/2015002_JYN/?spm=100004002.mw"&gt;买不到牛股？立即查看哪些板块正被机构盯上&lt;/a&gt;&lt;a class="jj_gg" href="http://stattg.eastmoney.com/10149?spm=100004002.mw"&gt;10000亿资金正在建仓的股票(名单)点击查看&gt;&gt;&lt;/a&gt;';
+            }
+            linkNav_HB.appendChild(gg_link)
+        }
+    }
+</script>
+
+
+<!-- 左侧广告 -->
+<script type="text/javascript" src="http://emres.dfcfw.com/public/js/left.js"></script><div id="flow-ad-63" style="display: none; width: 135px; height: 701px; left: -15px; top: 43px; position: fixed !important;"><div><div><div style="position:relative;width:135px;height:701px;background:url(http://g1.dfcfw.com/g3/201802/20180208143437.gif);"><div style="position:absolute;top:0;left:0;width:100%;height:701px;padding-top:0px;overflow:hidden;zoom:1;z-index:2;"><a href="https://acttg.eastmoney.com/pub/webtg_hskh_act_dcszccpl_01_01_01_0" target="_blank" style="display:block;width:100%;height:195px;cursor:pointer;margin-bottom:0px;overflow:hidden;"></a><a href="http://acttg.eastmoney.com/pub/web_cgds03rk_1_36" target="_blank" style="display:block;width:100%;height:80px;cursor:pointer;margin-bottom:0px;overflow:hidden;"></a><a href="https://acttg.eastmoney.com/pub/web_app_dcsy_zccpl_01_01_01_1" target="_blank" style="display:block;width:100%;height:85px;cursor:pointer;margin-bottom:0px;overflow:hidden;"></a><a href="http://acttg.eastmoney.com/pub/web_pc_dcsy_zccpl_01_01_01_1" target="_blank" style="display:block;width:100%;height:86px;cursor:pointer;margin-bottom:0px;overflow:hidden;"></a><a href="http://acttg.eastmoney.com/pub/web_pc_dcsy_zccpl_01_02_01_1" target="_blank" style="display:block;width:100%;height:84px;cursor:pointer;margin-bottom:0px;overflow:hidden;"></a><a href="http://js5.eastmoney.com/tg.aspx?ID=2035" target="_blank" style="display:block;width:100%;height:85px;cursor:pointer;margin-bottom:undefinedpx;overflow:hidden;"></a><a href="http://acttg.eastmoney.com/pub/web_jcb_dcsy_sydlzd_01_01_01_0" target="_blank" style="display:block;width:100%;height:86px;cursor:pointer;margin-bottom:undefinedpx;overflow:hidden;"></a></div></div></div><div style="position:absolute;right:0;top:0;overflow:hidden;text-indent:99px;z-index:999;font-weight:bold;cursor:pointer;line-height:20px;height:18px;width:18px;font-size:9pt;" onclick="closefixed_ad(this);">关闭</div></div></div>
+<!-- 右侧广告 -->
+<script type="text/javascript" src="http://emres.dfcfw.com/public/js/em_news_fixed_right.js"></script><div class="rbadbox" id="rightAD" style="position: absolute; top: 43px; z-index: 99; right: -18px; display: none;"><iframe width="135" height="1841" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src=" http://fundact.eastmoney.com/banner/Hot_Em.html?spm=001004.rw&amp;rmd=18213198"></iframe></div>
+<script type="text/javascript" src="http://bdstatic.eastmoney.com/web/prd/emtj_tracker.js?v=20150408"></script>
+<script type="text/javascript" src="http://emcharts.dfcfw.com/newsts/newsts.min.js" charset="utf-8" defer=""></script>
+
+
+
+
+
+</body></html>
+
+Process finished with exit code 0
